@@ -12,7 +12,7 @@ const Login = () => {
     const navigate = useNavigate()
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post('http://tecportfolio-api.onrender.com/users/login', {
+      axios.post('https://tecportfolio-api.onrender.com/users/login', {
         username,
         password,
       }).then(response => {
@@ -56,7 +56,7 @@ const Login = () => {
       e.preventDefault();
       console.log('restore')
       console.log(email)
-      axios.post('http://tecportfolio-api.onrender.com/users/RestorePassword', {
+      axios.post('https://tecportfolio-api.onrender.com/users/RestorePassword', {
         email
       }).then((response) => {
         console.log(response.data)

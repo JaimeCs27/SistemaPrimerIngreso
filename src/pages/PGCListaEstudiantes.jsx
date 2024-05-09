@@ -13,7 +13,7 @@ const GListaEstudiantesProfeGuia = () => {
         const us = JSON.parse(localStorage.getItem('user'))
         const campus = us.campus
         try {
-        axios.get(`http://localhost:5555/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
             setStudents(response.data)
             setLoading(false)
         }).catch((error) => {
