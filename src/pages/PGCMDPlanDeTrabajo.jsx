@@ -37,7 +37,7 @@ const MDPlanDeTrabajo = () => {
     const handleModify = () => {
         setLoading(true)
         let listId = {}
-        axios.post(`http://localhost:5555/ProfesorGuiaCoordinador/ModificarActividad/${id}`, {
+        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ModificarActividad/${id}`, {
             nombreActividad, semana, tipo, afiche, estado, fecha, hora, modalidad, responsables, recordatorios, evidencias
         }).then((response) => {
             setNombreActividad(response.data.nombre)
@@ -57,7 +57,7 @@ const MDPlanDeTrabajo = () => {
             setRecordatorios(list)
             setEvidencias(response.data.evidencias)
         }).then(()=> {
-            axios.post(`http://localhost:5555/ProfesorGuiaCoordinador/Responsables`, {
+            axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Responsables`, {
                 listId
             }).then((response)=>{
                 console.log(response.data)
@@ -95,7 +95,7 @@ const MDPlanDeTrabajo = () => {
 
       const handleSearch = () =>{
         setLoading(true)
-        axios.get(`http://localhost:5555/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
+        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
             setSearchList(response.data)
             setLoading(false)
         }).catch((error)=>{
@@ -120,7 +120,7 @@ const MDPlanDeTrabajo = () => {
     
       const handleAssign = () => {
         setLoading(true)
-        axios.post(`http://localhost:5555/ProfesorGuiaCoordinador/RecuperarProfesor`, {
+        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/RecuperarProfesor`, {
             selection
         }).then((response)=>{
             if (responsables.length === 0)
@@ -149,7 +149,7 @@ const MDPlanDeTrabajo = () => {
     useEffect(()=>{
         setLoading(true)
         let listId = {}
-        axios.get(`http://localhost:5555/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
+        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
             console.log(response.data)
             setNombreActividad(response.data.nombre)
             setEstado(response.data.estado)
@@ -170,7 +170,7 @@ const MDPlanDeTrabajo = () => {
 
             console.log(listId)
         }).then(()=> {
-            axios.post(`http://localhost:5555/ProfesorGuiaCoordinador/Responsables`, {
+            axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Responsables`, {
                 listId
             }).then((response)=>{
                 console.log(response.data)

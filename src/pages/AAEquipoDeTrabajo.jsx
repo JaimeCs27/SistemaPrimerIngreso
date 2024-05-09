@@ -31,7 +31,7 @@ const AA = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
     setLoadingRepresentante(true)
-    axios.post(`http://localhost:5555/AsistenteAdministrativo/AsignarRepresentante`,{
+    axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/AsignarRepresentante`,{
       selection, campus
     }).then((response) => {
       console.log(response)
@@ -52,7 +52,7 @@ const AA = () => {
       setLoadingRepresentante(false)
       setLoadingTeam(true)
       try{
-        axios.get('http://localhost:5555/AsistenteAdministrativo/EquipoTrabajo').then((response) => {    
+        axios.get('https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EquipoTrabajo').then((response) => {    
         setTeamwork(response.data)
           setLoadingTeam(false)
         }).catch((error) => {
@@ -71,7 +71,7 @@ const AA = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
     setLoadingRepresentante(true)
-    axios.post(`http://localhost:5555/AsistenteAdministrativo/DarDeBaja`, {
+    axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/DarDeBaja`, {
       campus
     }).then((response) => {
       console.log(response)  
@@ -83,7 +83,7 @@ const AA = () => {
       setLoadingRepresentante(false)
       setLoadingTeam(true)
       try{
-        axios.get('http://localhost:5555/AsistenteAdministrativo/EquipoTrabajo').then((response) => {    
+        axios.get('https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EquipoTrabajo').then((response) => {    
         setTeamwork(response.data)
           setLoadingTeam(false)
         }).catch((error) => {
@@ -103,7 +103,7 @@ const AA = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
 
-    axios.get(`http://localhost:5555/AsistenteAdministrativo/ListaProfesores/${searchName}?campus=${campus}`).then((response) => {
+    axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaProfesores/${searchName}?campus=${campus}`).then((response) => {
       setProfes(response.data)
       setLoading(false)
     }).catch((error) =>{
@@ -116,7 +116,7 @@ const AA = () => {
     const campus = us.campus
     setCampus(campus)
     setLoadingRepresentante(true)
-    axios.post(`http://localhost:5555/AsistenteAdministrativo/RepresentanteSede`, {
+    axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/RepresentanteSede`, {
       campus
     }).then((response) =>{
       if(!Object.keys(response.data).length){
@@ -135,7 +135,7 @@ const AA = () => {
   useEffect(() => {
     setLoadingTeam(true)
     try{
-      axios.get('http://localhost:5555/AsistenteAdministrativo/EquipoTrabajo').then((response) => {  
+      axios.get('https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EquipoTrabajo').then((response) => {  
         setTeamwork(response.data)
         setLoadingTeam(false)
       }).catch((error) => {
@@ -153,7 +153,7 @@ const AA = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
     try {
-      axios.get(`http://localhost:5555/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
+      axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
         setProfes(response.data)
         setLoading(false)
       }).catch((error) => {
@@ -170,7 +170,7 @@ const AA = () => {
   const handleSubmit = (e) => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
-    axios.post(`http://localhost:5555/AsistenteAdministrativo/AgregarProfesor`, {
+    axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/AgregarProfesor`, {
       name,
       secondName,
       lastName,
@@ -189,7 +189,7 @@ const AA = () => {
         const us = JSON.parse(localStorage.getItem('user'))
         const campus = us.campus
         try {
-          axios.get(`http://localhost:5555/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
+          axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
             setProfes(response.data)
             setLoading(false)
           }).catch((error) => {

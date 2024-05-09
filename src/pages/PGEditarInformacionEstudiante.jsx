@@ -23,7 +23,7 @@ const PGEditarInformacionEstudiante = () => {
     const {id} = useParams()
     
     const handleUpdate = () => {
-        axios.post(`http://localhost:5555/AsistenteAdministrativo/EditarEstudiante/${id}`, {
+        axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EditarEstudiante/${id}`, {
             name,
             secondName,
             lastName,
@@ -40,7 +40,7 @@ const PGEditarInformacionEstudiante = () => {
 
     useEffect(()=>{
         setLoading(true)
-        axios.get(`http://localhost:5555/AsistenteAdministrativo/VerDetallesEstudiante/${id}`).then((response) =>{
+        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/VerDetallesEstudiante/${id}`).then((response) =>{
             console.log(response.data)    
             setName(response.data.name)
             setNameTitle(response.data.name)

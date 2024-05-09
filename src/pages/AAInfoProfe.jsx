@@ -41,7 +41,7 @@ const InfoProfe = () => {
 
     const handleUpdate = () =>{
 
-      axios.post(`http://localhost:5555/AsistenteAdministrativo/EditarProfesor/${id}`, {
+      axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EditarProfesor/${id}`, {
         name,
         secondName,
         lastName,
@@ -61,7 +61,7 @@ const InfoProfe = () => {
 
     useEffect(()=>{
       setLoading(true)
-      axios.get(`http://localhost:5555/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
+      axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
       console.log(response.data)  
       setName(response.data.name)
       setNameTitle(response.data.name)

@@ -31,7 +31,7 @@ const AGPlanDeTrabajo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:5555/ProfesorGuiaCoordinador/CrearActividad', {
+        axios.post('https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/CrearActividad', {
             nombre,
             estado,
             semana,
@@ -56,7 +56,7 @@ const AGPlanDeTrabajo = () => {
 
       const handleAssign = () => {
         setLoadingProf(true)
-        axios.post(`http://localhost:5555/ProfesorGuiaCoordinador/RecuperarProfesor`, {
+        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/RecuperarProfesor`, {
             selection
         }).then((response)=>{
             if (responsables.length === 0)
@@ -73,14 +73,14 @@ const AGPlanDeTrabajo = () => {
 
       useEffect(()=>{
         setLoadingProf(true)
-        axios.get(`http://localhost:5555/ProfesorGuiaCoordinador/ListaProfesores`).then((response)=>{
+        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ListaProfesores`).then((response)=>{
             console.log(response.data)    
             setSearchList(response.data)
             setLoadingProf(false)
         }).catch((error)=>{
             setLoadingProf(false)
         })
-        axios.get(`http://localhost:5555/ProfesorGuiaCoordinador/Responsables/${id}`).then((response)=>{
+        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Responsables/${id}`).then((response)=>{
             setResponsables(response.data)
             setLoadingProf(false)
         })
@@ -88,7 +88,7 @@ const AGPlanDeTrabajo = () => {
 
       const handleSearch = () =>{
         setLoadingProf(true)
-        axios.get(`http://localhost:5555/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
+        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
             setSearchList(response.data)
             setLoadingProf(false)
         }).catch((error)=>{

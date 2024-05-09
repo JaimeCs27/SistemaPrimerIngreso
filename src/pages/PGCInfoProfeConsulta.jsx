@@ -30,7 +30,7 @@ const InfoProfeConsulta = () => {
 
   useEffect(()=>{
     setLoading(true)
-    axios.get(`http://localhost:5555/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
+    axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
     console.log(response.data)  
     setName(response.data.name)
     setNameTitle(response.data.name)

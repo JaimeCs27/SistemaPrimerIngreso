@@ -12,7 +12,7 @@ const PGPlandeTrabajo = () => {
     useEffect(() => {
         setLoadingActivities(true)
         try{
-            axios.get('http://localhost:5555/ProfesorGuiaCoordinador/ListaActividades').then((response) => {  
+            axios.get('https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ListaActividades').then((response) => {  
             setActivities(response.data)
             console.log(response.data)
             setLoadingActivities(false)

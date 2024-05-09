@@ -41,8 +41,12 @@ import Restore from './pages/RestorePass'
 import AACInformacionDeActividad from './pages/AACInformacionDeActividad'
 import AACPlanDeTrabajo from './pages/AACPlanDeTrabajo'
 
+import { disableReactDevTools } from '@fvilers/disable-react-devtools'
+
+
 
 const App = () => {
+  disableReactDevTools()
   return (
     <Routes>
       <Route path='/' element={<Login />} />

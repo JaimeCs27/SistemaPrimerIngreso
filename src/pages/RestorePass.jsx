@@ -11,7 +11,7 @@ const Restore = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post(`http://localhost:5555/users/restore/${id}`, {
+      axios.post(`https://tecportfolio-api.onrender.com/users/restore/${id}`, {
         password,
       }).then(response => {
         if(response.data.status){

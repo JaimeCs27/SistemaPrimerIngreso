@@ -34,7 +34,7 @@ const GPGPlandeTrabajo = () => {
         setLoading(true)
         const user = JSON.parse(localStorage.getItem('user'))
         const date = new Date()
-        axios.post(`http://localhost:5555/ProfesorGuiaCoordinador/ResponderComentario/${id}`,{
+        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ResponderComentario/${id}`,{
             idComentario, user, date, respuesta
         }).then((response)=>{
             setComentarios(response.data)
@@ -67,7 +67,7 @@ const GPGPlandeTrabajo = () => {
         const user = JSON.parse(localStorage.getItem('user'))
         setLoading(true)
         const date = new Date()
-        axios.post(`http://localhost:5555/ProfesorGuiaCoordinador/ComentarActividad/${id}`,{
+        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ComentarActividad/${id}`,{
             comment, user, date
         }).then((response)=>{
             setComentarios(response.data)
@@ -80,7 +80,7 @@ const GPGPlandeTrabajo = () => {
     useEffect(()=>{
         setLoading(true)
         let listId = {}
-        axios.get(`http://localhost:5555/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
+        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
             setNombreActividad(response.data.nombre)
             setEstado(response.data.estado)
             setSemana(response.data.semana)
@@ -98,7 +98,7 @@ const GPGPlandeTrabajo = () => {
             let days = calculateDaysUntil(response.data.fecha);
             setDiasRestante(days);
         }).then(()=> {
-            axios.post(`http://localhost:5555/ProfesorGuiaCoordinador/Responsables`, {
+            axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Responsables`, {
                 listId
             }).then((response)=>{
                 setResponsables(response.data)

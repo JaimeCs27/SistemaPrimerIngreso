@@ -12,7 +12,7 @@ const EquipoTrabajo = () => {
   useEffect(() => {
     setLoadingTeam(true)
     try{
-      axios.get('http://localhost:5555/AsistenteAdministrativo/EquipoTrabajo').then((response) => {  
+      axios.get('https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EquipoTrabajo').then((response) => {  
         setTeamwork(response.data)
         setLoadingTeam(false)
         console.log(response.data)
