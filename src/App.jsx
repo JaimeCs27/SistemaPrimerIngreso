@@ -3,19 +3,14 @@ import { Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import AACEquipoTrabajo from './pages/AACEquipoTrabajo'
 import AACInfoProfe from './pages/AACInfoProfe'
-import AACVerActividad from './pages/AACInformacionDeActividad'
 import AACListaEstudiantes from './pages/AACListaEstudiantes'
-import AACListaActividades from './pages/AACPlanDeTrabajo'
+
 
 import AAEquipoTrabajo from './pages/AAEquipoDeTrabajo'
 import AAInfoProfe from './pages/AAInfoProfe'
 import AAInformacionDeActividad from './pages/AAInformacionDeActividad'
 import AAListaEstudiantes from './pages/AAListaEstudiantes'
 import AAPlanDeTrabajo from './pages/AAPlanDeTrabajo'
-
-
-import GPGPT from './pages/PGActividad'
-import AGPT from './pages/PGCAGPlanDeTrabajo'
 
 
 import PGCEquipoTrabajo from './pages/PGCEquipoTrabajo'

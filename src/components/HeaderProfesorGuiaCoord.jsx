@@ -1,5 +1,6 @@
 import logo from '../images/LOGOTEC.png'
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState('equipo');
@@ -14,27 +15,15 @@ const Header = () => {
         <div className="flex items-center">
           <img src={logo} alt="TEC Logo" className="h-6 mr-4" />
           <nav className="flex">
-            <a
-              href="/ProfesorGuiaCoordinador/EquipoDeTrabajo"
-              className={tabClasses('equipo')}
-              onClick={() => setActiveTab('equipo')}
-            >
+            <Link to={'ProfesorGuiaCoordinador/EquipoDeTrabajo'}>
               Equipo de trabajo
-            </a>
-            <a
-              href="/ProfesorGuiaCoordinador/Estudiantes"
-              className={tabClasses('estudiantes')}
-              onClick={() => setActiveTab('estudiantes')}
-            >
+            </Link>
+            <Link to={'ProfesorGuiaCoordinador/Estudiantes'}>
               Estudiantes
-            </a>
-            <a
-              href="/ProfesorGuiaCoordinador/PlanDeTrabajo"
-              className={tabClasses('plan')}
-              onClick={() => setActiveTab('plan')}
-            >
-              Plan de trabajo
-            </a>
+            </Link>
+            <Link to={'ProfesorGuiaCoordinador/PlanDeTrabajo'}>
+              PlanDeTrabajo
+            </Link>
           </nav>
         </div>
         
