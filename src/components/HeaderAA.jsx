@@ -14,27 +14,15 @@ const Header = () => {
         <div className="flex items-center">
           <img src={logo} alt="TEC Logo" className="h-6 mr-4" />
           <nav className="flex">
-            <a
-              href="/AsistenteAdministrativo/EquipoDeTrabajo"
-              className={tabClasses('equipo')}
-              onClick={() => setActiveTab('equipo')}
-            >
+            <Link to={'/AsistenteAdministrativo/EquipoDeTrabajo'}>
               Equipo de trabajo
-            </a>
-            <a
-              href="/AsistenteAdministrativo/Estudiantes"
-              className={tabClasses('estudiantes')}
-              onClick={() => setActiveTab('estudiantes')}
-            >
+            </Link>
+            <Link to={'/AsistenteAdministrativo/Estudiantes'}>
               Estudiantes
-            </a>
-            <a
-              href="/AsistenteAdministrativo/PlanDeTrabajo"
-              className={tabClasses('plan')}
-              onClick={() => setActiveTab('plan')}
-            >
-              Plan de trabajo
-            </a>
+            </Link>
+            <Link to={'/AsistenteAdministrativo/PlanDeTrabajo'}>
+              PlanDeTrabajo
+            </Link>
           </nav>
         </div>
         
