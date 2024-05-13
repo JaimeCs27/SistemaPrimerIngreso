@@ -43,6 +43,7 @@ const GListaEstudiantesProfeGuia = () => {
             setCampus('Cartago')
         else if (e.target.value === 'Todos los campus')
             setCampus('')
+        console.log(campus)
         setLoading(true)
         try {
             axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
