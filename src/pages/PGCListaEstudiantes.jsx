@@ -16,6 +16,8 @@ const GListaEstudiantesProfeGuia = () => {
         const us = JSON.parse(localStorage.getItem('user'))
         const campusUser = us.campus
         setCampusSelect(campusUser)
+        setCampus(campusUser)
+        setFilter('Por orden alfabético')
         try {
         axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
             setStudents(response.data)
@@ -34,11 +36,20 @@ const GListaEstudiantesProfeGuia = () => {
     const handleFilters = () => {
         console.log(campus)
         console.log(filter)
-        if (filter === 'Por orden alfábetico'){
+        if (filter === 'Por orden alfabético'){
             console.log(campus)
             try {
                 axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
                     console.log(response.data)
+                    response.data.sort((a, b) => {
+                        if (a.lastName < b.lastName) {
+                          return -1;
+                        }
+                        if (a.lastName > b.lastName) {
+                          return 1;
+                        }
+                        return 0;
+                      });
                     setStudents(response.data)
                     setLoading(false)
                 }).catch((error) => {
@@ -145,7 +156,7 @@ const GListaEstudiantesProfeGuia = () => {
                         </div>
                         <div className='py-3'>
                             <select name='orden' onChange={(e) => setFilter(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                            <option >Por orden alfábetico</option>
+                            <option >Por orden alfabético</option>
                             <option >Por número de carné</option>
                             </select>
                         </div>
