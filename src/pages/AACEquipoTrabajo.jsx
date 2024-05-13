@@ -369,7 +369,7 @@ const AACartago = () => {
                   <input onChange={(e) => setEmail(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Email"/>
                 </div>
                 <div className="pb-6">
-                  <input onChange={(e) => setOfficePhone(e.target.value)} type="tel" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx[xxxx]" pattern='[0-9]{4}[0-9][[0-9]{4}]'/>
+                  <input onChange={(e) => setOfficePhone(e.target.value)} type="tel" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx[xxxx]" pattern='[0-9]{4}[0-9]{4}[[0-9]{4}]'/>
                 </div>
               </div>
               <div className="w-1/4 p-4 pt-7">
