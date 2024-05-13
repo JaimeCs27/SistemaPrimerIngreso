@@ -113,8 +113,8 @@ const MDPlanDeTrabajo = () => {
       }
 
       const handleDate = () => {
-        setLoading(true)
         setRecordatorios(prev => [...prev, date])
+        setLoading(true)
         setLoading(false)
       }
     

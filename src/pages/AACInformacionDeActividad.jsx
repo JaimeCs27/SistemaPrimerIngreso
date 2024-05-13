@@ -120,10 +120,14 @@ const AACInformacionDeActividad = () => {
                                         </div>
                                     </div>
                                     <div className='pt-3'>
-                                        <div className='pr-3'>
-                                            <h3 className='pb-2'>Enlace de la reunion</h3>
-                                            <input value={enlace} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[10px] focus:outline-none"/>
-                                        </div>
+                                        {modalidad === 'Presencial' ? (
+                                                <div/>
+                                            ): (
+                                                <div className='pr-3'>
+                                                    <h3 className='pb-2'>Enlace de la reunion</h3>
+                                                    <input value={enlace} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[10px] focus:outline-none"/>
+                                                </div>
+                                            )}
                                     </div>
                                 </div>
                                 <div className='flex pt-4 pr-3'>
