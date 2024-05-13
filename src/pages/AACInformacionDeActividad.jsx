@@ -20,35 +20,8 @@ const AACInformacionDeActividad = () => {
     const [enlace, setEnlace] = useState("");
     const [responsables, setResponsables] = useState([]); 
     const [recordatorios, setRecordatorios] = useState([]);
-    const [evidencias, setEvidencias] = useState([]);
-    const [comentarios, setComentarios] = useState([])
-    const [responder, setResponder] = useState(false)
     const [comment, setComment] = useState('')
     const [respuesta, setRespuesta] = useState('')
-    const [idComment, setIdComment] = useState('')
-
-
-
-    const handleResponse = (idComentario) => {
-        setResponder(false)
-        setLoading(true)
-        const user = JSON.parse(localStorage.getItem('user'))
-        const date = new Date()
-        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ResponderComentario/${id}`,{
-            idComentario, user, date, respuesta
-        }).then((response)=>{
-            setComentarios(response.data)
-            setLoading(false)
-        }).catch((error) =>{
-            setLoading(false)
-        })
-    }   
-
-
-    const handleOpenResponse = (e) => {
-        setIdComment(e)
-        setResponder(true)
-    }
 
     const calculateDaysUntil = (date) => {
         let today = new Date();
@@ -63,19 +36,19 @@ const AACInformacionDeActividad = () => {
         return days;
     };
 
-    const handleComment = () =>{
-        const user = JSON.parse(localStorage.getItem('user'))
-        setLoading(true)
-        const date = new Date()
-        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ComentarActividad/${id}`,{
-            comment, user, date
-        }).then((response)=>{
-            setComentarios(response.data)
-            setLoading(false)
-        }).catch((erro) => {
-            setLoading(false)
-        })
-    }
+
+    const formatDate = (dateInput) => {
+        const date = new Date(dateInput); // Asegura que dateInput se convierta a un objeto Date
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; // getMonth() retorna 0 para enero, 1 para febrero, etc.
+        const day = date.getDate();
+    
+        // Añadir un cero al inicio si el mes o día es menor a 10
+        const formattedMonth = month < 10 ? `0${month}` : month;
+        const formattedDay = day < 10 ? `0${day}` : day;
+    
+        return `${year}-${formattedMonth}-${formattedDay}`;
+      };
 
     useEffect(()=>{
         setLoading(true)
@@ -92,7 +65,11 @@ const AACInformacionDeActividad = () => {
             setModalidad(response.data.modalidad)
             setEnlace(response.data.enlaceReunion)
             listId={list: response.data.responsables}
-            setRecordatorios(response.data.recordatorios)
+            const list = []
+            response.data.recordatorios.forEach((recordatorio) => {
+                list.push(formatDate(recordatorio))
+            })
+            setRecordatorios(list)
             setComentarios(response.data.comentarios)
             setEvidencias(response.data.evidencias)
             let days = calculateDaysUntil(response.data.fecha);
