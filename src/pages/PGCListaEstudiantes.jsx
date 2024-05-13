@@ -32,7 +32,7 @@ const GListaEstudiantesProfeGuia = () => {
     },[])
 
     const handleFilters = (e) => {
-        if (filter === 'Alfa'){
+        if (e.target.value === 'Por orden alfábetico'){
             try {
                 axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
                     console.log(response.data)
@@ -46,22 +46,7 @@ const GListaEstudiantesProfeGuia = () => {
                 console.log(error)
                 setLoading(false)
             }
-        }else if (filter === 'Num'){
-            try {
-                axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
-                    console.log(response.data)
-                    setStudents(response.data)
-                    setLoading(false)
-                }).catch((error) => {
-                    console.log(error)
-                    setLoading(false)
-                }) } 
-            catch (error) {
-                console.log(error)
-                setLoading(false)
-            }            
         }
-
     }
 
 
@@ -142,8 +127,8 @@ const GListaEstudiantesProfeGuia = () => {
                         </div>
                         <div className='py-3'>
                             <select name='orden' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                            <option onChange={setFilter('Alfa')}>Por orden alfábetico</option>
-                            <option onChange={setFilter('Num')}>Por número de carné</option>
+                            <option onChange={handleFilters}>Por orden alfábetico</option>
+                            <option onChange={handleFilters}>Por número de carné</option>
                             </select>
                         </div>
                     </div>
