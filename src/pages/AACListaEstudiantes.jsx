@@ -57,6 +57,7 @@ const AACListaEstudiantes = () => {
         } else {
             console.log('Excel file mising')
         }
+        console.log(data)
       axios.post('https://tecportfolio-api.onrender.com/AsistenteAdministrativo/subirArchivo', {
         data
       }).then(response =>{
