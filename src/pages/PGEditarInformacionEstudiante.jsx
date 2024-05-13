@@ -20,6 +20,7 @@ const PGEditarInformacionEstudiante = () => {
     const [phoneNumber, setPhoneNumber] = useState("")
     const [campus, setCampus] = useState("")
     const [carne, setCarne] = useState("")
+    const [campusUser, setCampusUser] = useState("")
     const {id} = useParams()
     
     const handleUpdate = () => {
@@ -40,6 +41,8 @@ const PGEditarInformacionEstudiante = () => {
 
     useEffect(()=>{
         setLoading(true)
+        const us = JSON.parse(localStorage.getItem('user'))
+        setCampusUser(us.campus)
         axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/VerDetallesEstudiante/${id}`).then((response) =>{
             console.log(response.data)    
             setName(response.data.name)
@@ -109,7 +112,12 @@ const PGEditarInformacionEstudiante = () => {
                                 </div>
                               
                             </div>
-                        <button onClick={handleUpdate} className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 ml-10 rounded-xl rounded w-[10%]">Guardar Cambios</button>
+                        {campusUser === campus? (
+                            <button onClick={handleUpdate} className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 ml-10 rounded-xl rounded w-[10%]">Guardar Cambios</button>
+                        ) : (
+                            <div/>
+                        )}
+                       
                     </div>    
                 </div>
             </div>
