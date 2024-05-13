@@ -39,8 +39,24 @@ const AACInfoProfe = () => {
     }
   }
 
-  const handleUpdate = () =>{
+  function validatePhoneNumber(phone) {
+    const pattern = /^\d{4}-\d{4}$/;
+    return pattern.test(phone);
+  }
+  function validatePhoneNumberWithExtension(phoneNumber) {
+    const pattern = /^\d{4}-\d{4}\[\d{4}\]$/;
+    return pattern.test(phoneNumber);
+  }
 
+  const handleUpdate = () =>{
+    if(!validatePhoneNumber(phoneNumber)){
+      alert("Formato del telefono celular incorrecto")
+      return;
+    }
+    if(!validatePhoneNumberWithExtension(officePhone)){
+      alert("Formato del telefono de oficina incorrecto")
+      return;
+    }
     axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EditarProfesor/${id}`, {
       name,
       secondName,
@@ -118,7 +134,7 @@ const AACInfoProfe = () => {
                         <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Email"/>
                       </div>
                       <div className="pb-6">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Teléfono de Oficina"/>
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx[xxxx]"/>
                       </div>
                     </div>
                 ) : (
@@ -133,7 +149,7 @@ const AACInfoProfe = () => {
                       <input onChange={(e) => setEmail(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={email}/>
                     </div>
                     <div className="pb-6">
-                      <input onChange={(e) => setOfficePhone(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={officePhone}/>
+                      <input onChange={(e) => setOfficePhone(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx[xxxx]" value={officePhone}/>
                     </div>
                   </div>
                 )}
@@ -151,7 +167,7 @@ const AACInfoProfe = () => {
                     <div className="pb-16">
                     </div>
                     <div className="">
-                      <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Número de Teléfono"/>
+                      <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx"/>
                     </div>
                   </div>
               ) : (
@@ -165,7 +181,7 @@ const AACInfoProfe = () => {
                     <div className="pb-16">
                     </div>
                     <div className="">
-                      <input onChange={(e) => setPhoneNumber(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={phoneNumber}/>
+                      <input onChange={(e) => setPhoneNumber(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx" value={phoneNumber}/>
                     </div>
                   </div>
               )}

@@ -184,9 +184,26 @@ const AACartago = () => {
     }
   }, [])
 
+  function validatePhoneNumber(phone) {
+    const pattern = /^\d{4}-\d{4}$/;
+    return pattern.test(phone);
+  }
+  function validatePhoneNumberWithExtension(phoneNumber) {
+    const pattern = /^\d{4}-\d{4}\[\d{4}\]$/;
+    return pattern.test(phoneNumber);
+  }
+
   const handleSubmit = (e) => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
+    if(!validatePhoneNumber(phoneNumber)){
+      alert("Formato del telefono celular incorrecto")
+      return;
+    }
+    if(!validatePhoneNumberWithExtension(officePhone)){
+      alert("Formato del telefono de oficina incorrecto")
+      return;
+    }
     axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/AgregarProfesor`, {
       name,
       secondName,
