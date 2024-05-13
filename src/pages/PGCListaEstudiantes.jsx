@@ -7,13 +7,16 @@ import '../../styles.css'
 const GListaEstudiantesProfeGuia = () => {
     const [loading, setLoading] = useState(false)
     const [students, setStudents] = useState([])
+    const [campus, setCampus] = useState("")
+    const [campusSelect, setCampusSelect] = useState("")
 
     useEffect(()=>{
         setLoading(true)
         const us = JSON.parse(localStorage.getItem('user'))
-        const campus = us.campus
+        const campusUser = us.campus
+        setCampusSelect(campusUser)
         try {
-        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
             setStudents(response.data)
             setLoading(false)
         }).catch((error) => {
@@ -27,6 +30,53 @@ const GListaEstudiantesProfeGuia = () => {
     }
     },[])
 
+    const handleCampus = (e) =>{
+        if (e.target.value === 'Campus San José')
+            setCampus('San Jose')
+        else if (e.target.value === 'Campus Limón')
+            setCampus('Limon')
+        else if (e.target.value === 'Campus Alajuela')
+            setCampus('Alajuela')
+        else if (e.target.value === 'Campus San Carlos')
+            setCampus('San Carlos')
+        else if (e.target.value === 'Campus Cartago')
+            setCampus('Cartago')
+        else if (e.target.value === 'Todos los campus')
+            setCampus('')
+        setLoading(true)
+        try {
+            axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                setStudents(response.data)
+                setLoading(false)
+            }).catch((error) => {
+                console.log(error)
+                setLoading(false)
+            }) } 
+        catch (error) {
+            console.log(error)
+            setLoading(false)
+        }
+    }
+
+    const handleFilters = (e) => {
+        if (e.target.value === 'Por orden alfábetico'){
+            try {
+                axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                    console.log(response.data)
+                    setStudents(response.data)
+                    setLoading(false)
+                }).catch((error) => {
+                    console.log(error)
+                    setLoading(false)
+                }) } 
+            catch (error) {
+                console.log(error)
+                setLoading(false)
+            }
+        }
+    }
+
+
   return (
     <div>
         <Header/>
@@ -38,18 +88,74 @@ const GListaEstudiantesProfeGuia = () => {
                 <div className="bg-[#29364E] rounded-[16px] mb-6 h-[520px] px-5 border border-[#061634] scrollbar-webkit scrollbar-thin pt-1">
                     <div className="flex space-x-2 items-center mb-4">
                         <div className='py-3'>
-                            <select name='Estado_de_la_actividad' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                <option selected>1</option>
-                            </select>
+                        {campusSelect === 'San Jose' ? (
+                                <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                    <option onChange={handleCampus}selected>Campus San José</option>
+                                    <option onChange={handleCampus}>Campus Alajuela</option>
+                                    <option onChange={handleCampus}>Campus Limón</option>
+                                    <option onChange={handleCampus}>Campus San Carlos</option>
+                                    <option onChange={handleCampus}>Campus Cartago</option>
+                                    <option onChange={handleCampus}>Todos los campus</option>
+                                </select>
+                                ) : (
+                                    campusSelect === 'Cartago' ? (
+                                        <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                            <option onChange={handleCampus}>Campus San José</option>
+                                            <option onChange={handleCampus}>Campus Alajuela</option>
+                                            <option onChange={handleCampus}>Campus Limón</option>
+                                            <option onChange={handleCampus}>Campus San Carlos</option>
+                                            <option onChange={handleCampus} selected>Campus Cartago</option>
+                                            <option onChange={handleCampus}>Todos los campus</option>
+                                        </select>
+                                    ) : (
+                                        campusSelect === 'Alajuela' ? (
+                                            <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                <option onChange={handleCampus}>Campus San José</option>
+                                                <option onChange={handleCampus} selected>Campus Alajuela</option>
+                                                <option onChange={handleCampus}>Campus Limón</option>
+                                                <option onChange={handleCampus}>Campus San Carlos</option>
+                                                <option onChange={handleCampus}>Campus Cartago</option>
+                                                <option onChange={handleCampus}>Todos los campus</option>
+                                            </select>
+                                        ): (
+                                            campusSelect === 'San Carlos' ? (
+                                                <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                    <option onChange={handleCampus}>Campus San José</option>
+                                                    <option onChange={handleCampus}>Campus Alajuela</option>
+                                                    <option onChange={handleCampus}>Campus Limón</option>
+                                                    <option onChange={handleCampus} selected>Campus San Carlos</option>
+                                                    <option onChange={handleCampus}>Campus Cartago</option>
+                                                    <option onChange={handleCampus}>Todos los campus</option>
+                                                </select>
+                                            ) : (
+                                                campusSelect === 'Limon' ? (
+                                                    <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                        <option onChange={handleCampus}>Campus San José</option>
+                                                        <option onChange={handleCampus}>Campus Alajuela</option>
+                                                        <option onChange={handleCampus} selected>Campus Limón</option>
+                                                        <option onChange={handleCampus}>Campus San Carlos</option>
+                                                        <option onChange={handleCampus}>Campus Cartago</option>
+                                                        <option onChange={handleCampus}>Todos los campus</option>
+                                                    </select>
+                                                ) : (
+                                                    <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                        <option onChange={handleCampus}>Campus San José</option>
+                                                        <option onChange={handleCampus}>Campus Alajuela</option>
+                                                        <option onChange={handleCampus}>Campus Limón</option>
+                                                        <option onChange={handleCampus}>Campus San Carlos</option>
+                                                        <option onChange={handleCampus}>Campus Cartago</option>
+                                                        <option onChange={handleCampus} selected>Todos los campus</option>
+                                                    </select>    
+                                                )
+                                            )
+                                        )
+                                    )
+                                )}
                         </div>
                         <div className='py-3'>
-                            <select name='Estado_de_la_actividad' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                <option selected>2</option>
-                            </select>
-                        </div>
-                        <div className='py-3'>
-                            <select name='Estado_de_la_actividad' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                <option selected>3</option>
+                            <select name='orden' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                            <option onChange={handleFilters}>Por orden alfábetico</option>
+                            <option onChange={handleFilters}>Por número de carné</option>
                             </select>
                         </div>
                     </div>
