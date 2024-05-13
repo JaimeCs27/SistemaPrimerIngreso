@@ -15,14 +15,14 @@ const Header = () => {
         <div className="flex items-center">
           <img src={logo} alt="TEC Logo" className="h-6 mr-4" />
           <nav className="flex">
-          <Link to={'/AsistenteAdministrativoCartago/EquipoDeTrabajo'}>
-              Equipo de trabajo
+          <Link className='text-white pl-4' to={'/AsistenteAdministrativoCartago/EquipoDeTrabajo'}>
+              <p>Equipo de trabajo</p>
             </Link>
-            <Link to={'/AsistenteAdministrativoCartago/Estudiantes'}>
-              Estudiantes
+            <Link className='text-white pl-4' to={'/AsistenteAdministrativoCartago/Estudiantes'}>
+            <p> Estudiantes</p>
             </Link>
-            <Link to={'/AsistenteAdministrativoCartago/PlanDeTrabajo'}>
-              PlanDeTrabajo
+            <Link className='text-white pl-4' to={'/AsistenteAdministrativoCartago/PlanDeTrabajo'}>
+            <p> PlanDeTrabajo</p>
             </Link>
           </nav>
         </div>
