@@ -58,9 +58,9 @@ const PGEditarInformacionEstudiante = () => {
             setCampus(response.data.campus)
             setCarne(response.data.carne)
             setLoading(false)
+            console.log(campusUser)
+            console.log(campus)
         })
-        console.log(campusUser)
-        console.log(campus)
     }, [])
   
     return (
@@ -119,7 +119,6 @@ const PGEditarInformacionEstudiante = () => {
                         ) : (
                             <div/>
                         )}
-                       
                     </div>    
                 </div>
             </div>

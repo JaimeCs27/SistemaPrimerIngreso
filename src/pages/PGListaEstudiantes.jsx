@@ -19,7 +19,7 @@ const ListaEstudiantesProfeGuia = () => {
         setCampus(campusUser)
         setFilter('Por orden alfabético')
         try {
-        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
             console.log(response.data)
             setStudents(response.data)
             setLoading(false)
