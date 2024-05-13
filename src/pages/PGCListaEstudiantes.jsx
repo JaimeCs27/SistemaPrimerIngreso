@@ -66,7 +66,7 @@ const GListaEstudiantesProfeGuia = () => {
                 axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
                     console.log(response.data)
                     response.data.sort((a, b) => {
-                        return a.carnet.localeCompare(b.carnet);
+                        return a.carne.localeCompare(b.carne);
                     });
                     setStudents(response.data)
                     setLoading(false)
