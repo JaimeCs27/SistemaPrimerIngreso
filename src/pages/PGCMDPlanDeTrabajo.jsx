@@ -19,6 +19,7 @@ const MDPlanDeTrabajo = () => {
     const [searchList, setSearchList] = useState([])
     const [searchName, setSearch] = useState('')
     const [fecha, setFecha] = useState(null);
+    const [date, setDate] = useState(null);
     const [hora, setHora] = useState("");
     const [modalidad, setModalidad] = useState(""); 
     const [estado, setEstado] = useState("");
