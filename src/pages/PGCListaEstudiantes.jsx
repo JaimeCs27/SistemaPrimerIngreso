@@ -9,16 +9,18 @@ const GListaEstudiantesProfeGuia = () => {
     const [students, setStudents] = useState([])
     const [campus, setCampus] = useState("")
     const [campusSelect, setCampusSelect] = useState("")
-    const us = JSON.parse(localStorage.getItem('user'))
-    const campusUser = us.campus
-    setCampusSelect(campusUser)
-    setCampus(campusUser)
-
+    const [order, setOrder] = useState("")
+    
+    
     useEffect(()=>{
         setLoading(true)
+        const us = JSON.parse(localStorage.getItem('user'))
+        const campusUser = us.campus
+        setCampusSelect(campusUser)
+        setCampus(campusUser)
         console.log(campus)
         try {
-        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
             console.log(response.data)
             setStudents(response.data)
             setLoading(false)
@@ -33,8 +35,24 @@ const GListaEstudiantesProfeGuia = () => {
     }
     },[])
 
-    const handleFilters = (e) => {
-        if (e.target.value === 'Por orden alfábetico'){
+    const handleFilters = () => {
+        if (order === 'Alfa'){
+            console.log(campus)
+            try {
+                axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                    console.log(response.data)
+                    setStudents(response.data)
+                    setLoading(false)
+                }).catch((error) => {
+                    console.log(error)
+                    setLoading(false)
+                }) } 
+            catch (error) {
+                console.log(error)
+                setLoading(false)
+            }
+        } else if(order === 'Num'){
+            console.log(campus)
             try {
                 axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
                     console.log(response.data)
@@ -129,9 +147,14 @@ const GListaEstudiantesProfeGuia = () => {
                         </div>
                         <div className='py-3'>
                             <select name='orden' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                            <option onChange={handleFilters}>Por orden alfábetico</option>
-                            <option onChange={handleFilters}>Por número de carné</option>
+                            <option onChange={setOrder('Alfa')}>Por orden alfábetico</option>
+                            <option onChange={setOrder('Num')}>Por número de carné</option>
                             </select>
+                        </div>
+                        <div className="py-3">
+                            <button onClick={handleFilters} className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]">
+                                Aplicar Filtros
+                            </button>
                         </div>
                     </div>
                     <div className="custom-scrollbar mb-6 overflow-auto h-[420px] px-5 scrollbar-webkit scrollbar-thin">
