@@ -62,62 +62,62 @@ const GListaEstudiantesProfeGuia = () => {
                     <div className="flex space-x-2 items-center mb-4">
                         <div className='py-3'>
                         {campusSelect === 'San Jose' ? (
-                                <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                    <option selected>Campus San José</option>
-                                    <option>Campus Alajuela</option>
-                                    <option>Campus Limón</option>
-                                    <option>Campus San Carlos</option>
-                                    <option>Campus Cartago</option>
-                                    <option>Todos los campus</option>
+                                <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                    <option selected>San Jose</option>
+                                    <option>Alajuela</option>
+                                    <option>Limon</option>
+                                    <option>San Carlos</option>
+                                    <option>Cartago</option>
+                                    <option>Todos</option>
                                 </select>
                                 ) : (
                                     campusSelect === 'Cartago' ? (
-                                        <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                            <option>Campus San José</option>
-                                            <option>Campus Alajuela</option>
-                                            <option>Campus Limón</option>
-                                            <option>Campus San Carlos</option>
-                                            <option selected>Campus Cartago</option>
-                                            <option>Todos los campus</option>
+                                        <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                            <option>San Jose</option>
+                                            <option>Alajuela</option>
+                                            <option>Limon</option>
+                                            <option>San Carlos</option>
+                                            <option selected>Cartago</option>
+                                            <option>Todos</option>
                                         </select>
                                     ) : (
                                         campusSelect === 'Alajuela' ? (
-                                            <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                                <option>Campus San José</option>
-                                                <option selected>Campus Alajuela</option>
-                                                <option>Campus Limón</option>
-                                                <option>Campus San Carlos</option>
-                                                <option>Campus Cartago</option>
-                                                <option>Todos los campus</option>
+                                            <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                <option>San Jose</option>
+                                                <option selected>Alajuela</option>
+                                                <option>Limon</option>
+                                                <option>San Carlos</option>
+                                                <option>Cartago</option>
+                                                <option>Todos</option>
                                             </select>
                                         ): (
                                             campusSelect === 'San Carlos' ? (
-                                                <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                                    <option>Campus San José</option>
-                                                    <option>Campus Alajuela</option>
-                                                    <option>Campus Limón</option>
-                                                    <option selected>Campus San Carlos</option>
-                                                    <option>Campus Cartago</option>
-                                                    <option>Todos los campus</option>
+                                                <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                    <option>San Jose</option>
+                                                    <option>Alajuela</option>
+                                                    <option>Limon</option>
+                                                    <option selected>San Carlos</option>
+                                                    <option>Cartago</option>
+                                                    <option>Todos</option>
                                                 </select>
                                             ) : (
                                                 campusSelect === 'Limon' ? (
-                                                    <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                                        <option>Campus San José</option>
-                                                        <option>Campus Alajuela</option>
-                                                        <option selected>Campus Limón</option>
-                                                        <option>Campus San Carlos</option>
-                                                        <option>Campus Cartago</option>
-                                                        <option>Todos los campus</option>
+                                                    <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                        <option>San Jose</option>
+                                                        <option>Alajuela</option>
+                                                        <option selected>Limon</option>
+                                                        <option>San Carlos</option>
+                                                        <option>Cartago</option>
+                                                        <option>Todos</option>
                                                     </select>
                                                 ) : (
-                                                    <select name='campus' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                                        <option>Campus San José</option>
-                                                        <option>Campus Alajuela</option>
-                                                        <option>Campus Limón</option>
-                                                        <option>Campus San Carlos</option>
-                                                        <option>Campus Cartago</option>
-                                                        <option selected>Todos los campus</option>
+                                                    <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                        <option>San Jose</option>
+                                                        <option>Alajuela</option>
+                                                        <option>Limon</option>
+                                                        <option>San Carlos</option>
+                                                        <option>Cartago</option>
+                                                        <option selected>Todos</option>
                                                     </select>    
                                                 )
                                             )
