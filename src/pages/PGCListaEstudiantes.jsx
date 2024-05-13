@@ -32,6 +32,8 @@ const GListaEstudiantesProfeGuia = () => {
     },[])
 
     const handleFilters = () => {
+        console.log(campus)
+        console.log(filter)
         if (filter === 'Por orden alfábetico'){
             console.log(campus)
             try {
