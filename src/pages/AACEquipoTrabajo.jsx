@@ -92,7 +92,6 @@ const AACartago = () => {
     axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/DarDeBaja`, {
       campus
     }).then((response) => {
-      console.log(response)  
       if (response.data === 'Success'){
           setRepresentante({name: "Sin Definir", teacherID: "---"})
           setLoadingRepresentante(false)

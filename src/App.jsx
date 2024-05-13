@@ -45,7 +45,7 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Login />} />
-      <Route path='RestorePassword/:id' element={<Restore/>}/>
+      <Route path='/RestorePassword/:id' element={<Restore/>}/>
 
       <Route path='AsistenteAdministrativoCartago/EquipoDeTrabajo' element={<AACEquipoTrabajo />} />
       <Route path='AsistenteAdministrativoCartago/Estudiantes' element={<AACListaEstudiantes />} />
