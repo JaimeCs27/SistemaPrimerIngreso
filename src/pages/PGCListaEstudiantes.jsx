@@ -9,14 +9,17 @@ const GListaEstudiantesProfeGuia = () => {
     const [students, setStudents] = useState([])
     const [campus, setCampus] = useState("")
     const [campusSelect, setCampusSelect] = useState("")
+    const us = JSON.parse(localStorage.getItem('user'))
+    const campusUser = us.campus
+    setCampusSelect(campusUser)
+    setCampus(campusUser)
 
     useEffect(()=>{
         setLoading(true)
-        const us = JSON.parse(localStorage.getItem('user'))
-        const campusUser = us.campus
-        setCampusSelect(campusUser)
+        console.log(campus)
         try {
-        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
+        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+            console.log(response.data)
             setStudents(response.data)
             setLoading(false)
         }).catch((error) => {
@@ -29,35 +32,6 @@ const GListaEstudiantesProfeGuia = () => {
             setLoading(false)
     }
     },[])
-
-    const handleCampus = (e) =>{
-        if (e.target.value === 'Campus San José')
-            setCampus('San Jose')
-        else if (e.target.value === 'Campus Limón')
-            setCampus('Limon')
-        else if (e.target.value === 'Campus Alajuela')
-            setCampus('Alajuela')
-        else if (e.target.value === 'Campus San Carlos')
-            setCampus('San Carlos')
-        else if (e.target.value === 'Campus Cartago')
-            setCampus('Cartago')
-        else if (e.target.value === 'Todos los campus')
-            setCampus('')
-        console.log(campus)
-        setLoading(true)
-        try {
-            axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
-                setStudents(response.data)
-                setLoading(false)
-            }).catch((error) => {
-                console.log(error)
-                setLoading(false)
-            }) } 
-        catch (error) {
-            console.log(error)
-            setLoading(false)
-        }
-    }
 
     const handleFilters = (e) => {
         if (e.target.value === 'Por orden alfábetico'){
@@ -90,7 +64,7 @@ const GListaEstudiantesProfeGuia = () => {
                     <div className="flex space-x-2 items-center mb-4">
                         <div className='py-3'>
                         {campusSelect === 'San Jose' ? (
-                                <select name='campus' onChange={handleCampus} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                <select name='campus' onChange={(e) => setCampus('San Jose')} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                     <option selected>Campus San José</option>
                                     <option>Campus Alajuela</option>
                                     <option>Campus Limón</option>
@@ -100,7 +74,7 @@ const GListaEstudiantesProfeGuia = () => {
                                 </select>
                                 ) : (
                                     campusSelect === 'Cartago' ? (
-                                        <select name='campus' onChange={handleCampus} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                        <select name='campus' onChange={(e) => setCampus('Cartago')} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                             <option>Campus San José</option>
                                             <option>Campus Alajuela</option>
                                             <option>Campus Limón</option>
@@ -110,7 +84,7 @@ const GListaEstudiantesProfeGuia = () => {
                                         </select>
                                     ) : (
                                         campusSelect === 'Alajuela' ? (
-                                            <select name='campus' onChange={handleCampus} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                            <select name='campus' onChange={(e) => setCampus('Alajuela')} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                                 <option>Campus San José</option>
                                                 <option selected>Campus Alajuela</option>
                                                 <option>Campus Limón</option>
@@ -120,7 +94,7 @@ const GListaEstudiantesProfeGuia = () => {
                                             </select>
                                         ): (
                                             campusSelect === 'San Carlos' ? (
-                                                <select name='campus' onChange={handleCampus} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                <select name='campus' onChange={(e) => setCampus('San Carlos')} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                                     <option>Campus San José</option>
                                                     <option>Campus Alajuela</option>
                                                     <option>Campus Limón</option>
@@ -130,7 +104,7 @@ const GListaEstudiantesProfeGuia = () => {
                                                 </select>
                                             ) : (
                                                 campusSelect === 'Limon' ? (
-                                                    <select name='campus' onChange={handleCampus} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                    <select name='campus' onChange={(e) => setCampus('Limon')} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                                         <option>Campus San José</option>
                                                         <option>Campus Alajuela</option>
                                                         <option selected>Campus Limón</option>
@@ -139,7 +113,7 @@ const GListaEstudiantesProfeGuia = () => {
                                                         <option>Todos los campus</option>
                                                     </select>
                                                 ) : (
-                                                    <select name='campus' onChange={handleCampus} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                    <select name='campus' onChange={(e) => setCampus('Todos')} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                                         <option>Campus San José</option>
                                                         <option>Campus Alajuela</option>
                                                         <option>Campus Limón</option>
