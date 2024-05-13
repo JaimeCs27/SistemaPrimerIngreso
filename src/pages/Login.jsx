@@ -16,9 +16,8 @@ const Login = () => {
         username,
         password,
       }).then(response => {
-        if(response.message === "Contraseña Incorrecta"){
-          alert("Contraseña Ingresada Incorrecta")
-        }else if(response.data.status){
+        console.log(response.message)
+        if(response.data.status){
           if(response.data.user.password === '1234'){
             alert("Su usuario no posee contraseña por lo cual se redireccionará a una nueva página para que digite su nueva contraseña")
             navigate(`/RestorePassword/${response.data.user._id}`)
@@ -35,6 +34,8 @@ const Login = () => {
               navigate('/ProfesorGuiaCoordinador/EquipoDeTrabajo')
 
           }
+        }else if(response.message === "Contraseña Incorrecta"){
+          alert("Contraseña Incorrecta")
         }
       }).catch(err => {
         console.log(err)
