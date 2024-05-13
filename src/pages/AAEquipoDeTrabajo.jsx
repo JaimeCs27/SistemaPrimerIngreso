@@ -341,7 +341,7 @@ const AA = () => {
                   <input onChange={(e) => setEmail(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Email"/>
                 </div>
                 <div className="pb-6">
-                  <input onChange={(e) => setOfficePhone(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Número de teléfono(Oficina)"/>
+                  <input onChange={(e) => setOfficePhone(e.target.value)} type="tel" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx[xxxx]" pattern="\d{4}-\d{4}(\[\d{4}\])?" />
                 </div>
               </div>
               <div className="w-1/4 p-4 pt-7">
@@ -354,7 +354,7 @@ const AA = () => {
                 <div className="pb-16">
                 </div>
                 <div className="">
-                  <input onChange={(e) => setPhoneNumber(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Número de teléfono (Celular)"/>
+                  <input onChange={(e) => setPhoneNumber(e.target.value)} type="tel" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx" pattern='[0-9]{4}-[0-9]{4}'/>
                 </div>
               </div>
 
