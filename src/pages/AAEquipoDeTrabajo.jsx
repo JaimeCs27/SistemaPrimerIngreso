@@ -24,7 +24,7 @@ const AA = () => {
   const [representante, setRepresentante] = useState({})
   const [loadingRepresentante, setLoadingRepresentante] = useState(false)
   
- 
+  
   
 
   const handleAssign = () => {
@@ -167,9 +167,26 @@ const AA = () => {
     }
   }, [])
 
+  function validatePhoneNumber(phone) {
+    const pattern = /^\d{4}-\d{4}$/;
+    return pattern.test(phone);
+  }
+  function validatePhoneNumberWithExtension(phoneNumber) {
+    const pattern = /^\d{4}-\d{4}\[\d{4}\]$/;
+    return pattern.test(phoneNumber);
+  }
+
   const handleSubmit = (e) => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
+    if(!validatePhoneNumber(phoneNumber)){
+      alert("Formato del telefono celular incorrecto")
+      return;
+    }
+    if(!validatePhoneNumberWithExtension(officePhone)){
+      alert("Formato del telefono de oficina incorrecto")
+      return;
+    }
     axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/AgregarProfesor`, {
       name,
       secondName,
@@ -357,7 +374,7 @@ const AA = () => {
                   <input onChange={(e) => setPhoneNumber(e.target.value)} type="tel" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx" pattern='[0-9]{4}-[0-9]{4}' required/>
                 </div>
               </div>
-
+              
               <div className="w-1/4 p-7">
                 <div class="flex items-center justify-center w-full">
                     <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
