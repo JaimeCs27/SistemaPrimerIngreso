@@ -126,10 +126,15 @@ const GListaEstudiantesProfeGuia = () => {
                                 )}
                         </div>
                         <div className='py-3'>
-                            <select name='orden' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                            <option onChange={handleFilters}>Por orden alfábetico</option>
-                            <option onChange={handleFilters}>Por número de carné</option>
+                            <select name='orden' onChange={(e) => setFilter(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                            <option >Por orden alfábetico</option>
+                            <option >Por número de carné</option>
                             </select>
+                        </div>
+                        <div className="py-3">
+                            <button className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]">
+                                Generar Informe
+                            </button>
                         </div>
                     </div>
                     <div className="custom-scrollbar mb-6 overflow-auto h-[420px] px-5 scrollbar-webkit scrollbar-thin">
