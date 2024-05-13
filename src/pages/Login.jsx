@@ -16,7 +16,9 @@ const Login = () => {
         username,
         password,
       }).then(response => {
-        if(response.data.status){
+        if(response.message === "Contraseña Incorrecta"){
+          alert("Contraseña Ingresada Incorrecta")
+        }else if(response.data.status){
           if(response.data.user.password === '1234'){
             alert("Su usuario no posee contraseña por lo cual se redireccionará a una nueva página para que digite su nueva contraseña")
             navigate(`/RestorePassword/${response.data.user._id}`)
