@@ -59,6 +59,8 @@ const PGEditarInformacionEstudiante = () => {
             setCarne(response.data.carne)
             setLoading(false)
         })
+        console.log(campusUser)
+        console.log(campus)
     }, [])
   
     return (

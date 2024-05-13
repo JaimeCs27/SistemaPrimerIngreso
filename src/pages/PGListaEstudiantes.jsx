@@ -7,11 +7,17 @@ import '../../styles.css'
 const ListaEstudiantesProfeGuia = () => {
     const [loading, setLoading] = useState(false)
     const [students, setStudents] = useState([])
+    const [campus, setCampus] = useState("")
+    const [campusSelect, setCampusSelect] = useState("")
+    const [filter, setFilter] = useState("")
 
     useEffect(()=>{
         setLoading(true)
         const us = JSON.parse(localStorage.getItem('user'))
-        const campus = us.campus
+        const campusUser = us.campus
+        setCampusSelect(campusUser)
+        setCampus(campusUser)
+        setFilter('Por orden alfabético')
         try {
         axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
             console.log(response.data)
@@ -27,6 +33,56 @@ const ListaEstudiantesProfeGuia = () => {
             setLoading(false)
     }
     },[])
+
+    const handleFilters = () => {
+        console.log(campus)
+        console.log(filter)
+        if (filter === 'Por orden alfabético'){
+            console.log(campus)
+            try {
+                axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                    console.log(response.data)
+                    response.data.sort((a, b) => {
+                        if (a.lastName < b.lastName) {
+                          return -1;
+                        }
+                        if (a.lastName > b.lastName) {
+                          return 1;
+                        }
+                        return 0;
+                      });
+                    setStudents(response.data)
+                    setLoading(false)
+                }).catch((error) => {
+                    console.log(error)
+                    setLoading(false)
+                }) } 
+            catch (error) {
+                console.log(error)
+                setLoading(false)
+            }
+        } else if(filter === 'Por número de carné'){
+            console.log(campus)
+            try {
+                axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                    console.log(response.data)
+                    response.data.sort((a, b) => {
+                        return a.carne.localeCompare(b.carne);
+                    });
+                    setStudents(response.data)
+                    setLoading(false)
+                }).catch((error) => {
+                    console.log(error)
+                    setLoading(false)
+                }) } 
+            catch (error) {
+                console.log(error)
+                setLoading(false)
+            }
+        }
+    }
+
+
   return (
     <div>
         <Header/>
@@ -38,19 +94,80 @@ const ListaEstudiantesProfeGuia = () => {
                 <div className="bg-[#29364E] rounded-[16px] mb-6 h-[520px] px-5 border border-[#061634] scrollbar-webkit scrollbar-thin pt-1">
                     <div className="flex space-x-2 items-center mb-4">
                         <div className='py-3'>
-                            <select name='Estado_de_la_actividad' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                <option selected>1</option>
-                            </select>
+                        {campusSelect === 'San Jose' ? (
+                                <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                    <option selected>San Jose</option>
+                                    <option>Alajuela</option>
+                                    <option>Limon</option>
+                                    <option>San Carlos</option>
+                                    <option>Cartago</option>
+                                    <option>Todos</option>
+                                </select>
+                                ) : (
+                                    campusSelect === 'Cartago' ? (
+                                        <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                            <option>San Jose</option>
+                                            <option>Alajuela</option>
+                                            <option>Limon</option>
+                                            <option>San Carlos</option>
+                                            <option selected>Cartago</option>
+                                            <option>Todos</option>
+                                        </select>
+                                    ) : (
+                                        campusSelect === 'Alajuela' ? (
+                                            <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                <option>San Jose</option>
+                                                <option selected>Alajuela</option>
+                                                <option>Limon</option>
+                                                <option>San Carlos</option>
+                                                <option>Cartago</option>
+                                                <option>Todos</option>
+                                            </select>
+                                        ): (
+                                            campusSelect === 'San Carlos' ? (
+                                                <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                    <option>San Jose</option>
+                                                    <option>Alajuela</option>
+                                                    <option>Limon</option>
+                                                    <option selected>San Carlos</option>
+                                                    <option>Cartago</option>
+                                                    <option>Todos</option>
+                                                </select>
+                                            ) : (
+                                                campusSelect === 'Limon' ? (
+                                                    <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                        <option>San Jose</option>
+                                                        <option>Alajuela</option>
+                                                        <option selected>Limon</option>
+                                                        <option>San Carlos</option>
+                                                        <option>Cartago</option>
+                                                        <option>Todos</option>
+                                                    </select>
+                                                ) : (
+                                                    <select name='campus' onChange={(e) => setCampus(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                                        <option>San Jose</option>
+                                                        <option>Alajuela</option>
+                                                        <option>Limon</option>
+                                                        <option>San Carlos</option>
+                                                        <option>Cartago</option>
+                                                        <option selected>Todos</option>
+                                                    </select>    
+                                                )
+                                            )
+                                        )
+                                    )
+                                )}
                         </div>
                         <div className='py-3'>
-                            <select name='Estado_de_la_actividad' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                <option selected>2</option>
+                            <select name='orden' onChange={(e) => setFilter(e.target.value)} class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                            <option >Por orden alfabético</option>
+                            <option >Por número de carné</option>
                             </select>
                         </div>
-                        <div className='py-3'>
-                            <select name='Estado_de_la_actividad' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                <option selected>3</option>
-                            </select>
+                        <div className="py-3">
+                            <button onClick={handleFilters} className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]">
+                                Aplicar filtros
+                            </button>
                         </div>
                     </div>
                     <div className="custom-scrollbar mb-6 overflow-auto h-[420px] px-5 scrollbar-webkit scrollbar-thin">
