@@ -20,8 +20,6 @@ const AACInformacionDeActividad = () => {
     const [enlace, setEnlace] = useState("");
     const [responsables, setResponsables] = useState([]); 
     const [recordatorios, setRecordatorios] = useState([]);
-    const [comment, setComment] = useState('')
-    const [respuesta, setRespuesta] = useState('')
 
     const calculateDaysUntil = (date) => {
         let today = new Date();
@@ -70,8 +68,6 @@ const AACInformacionDeActividad = () => {
                 list.push(formatDate(recordatorio))
             })
             setRecordatorios(list)
-            setComentarios(response.data.comentarios)
-            setEvidencias(response.data.evidencias)
             let days = calculateDaysUntil(response.data.fecha);
             setDiasRestante(days);
         }).then(()=> {
