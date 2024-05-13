@@ -146,11 +146,6 @@ const GListaEstudiantesProfeGuia = () => {
                             <option onChange={setFilter('Num')}>Por número de carné</option>
                             </select>
                         </div>
-                        <div className="py-3">
-                            <button onClick={handleFilters} className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]">
-                                Aplicar Filtros
-                            </button>
-                        </div>
                     </div>
                     <div className="custom-scrollbar mb-6 overflow-auto h-[420px] px-5 scrollbar-webkit scrollbar-thin">
                         {loading? (
