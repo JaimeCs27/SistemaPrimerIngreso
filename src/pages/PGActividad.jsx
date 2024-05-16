@@ -213,7 +213,7 @@ const PGPlandeTrabajo = () => {
                                 </div>
                             </div>
                             <div className='w-1/2 p-10 rounded-[12px] border-2 border-[#061634]'>
-                                hola
+                                <img src={afiche} alt="Imagen no encontrada" className="w-full h-full object-cover"></img>
                             </div>
                         </div>
                         <div className='pt-5'> {/* evidencias*/}
