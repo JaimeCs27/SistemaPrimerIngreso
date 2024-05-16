@@ -45,7 +45,7 @@ const AAPlanDeTrabajo = () => {
                                             <a class="bg-[#081434] hover:bg-[#212c48] p-7 rounded-xl flex justify-between items-center">
                                                 <span class="text-white font-semibold">{`${activity.nombre}`}</span>
                                                 <span class="text-white font-semibold">{`${activity.tipo}`}</span>
-                                                <span class="text-white font-bold">{`${activity.tipo}`}</span>
+                                                <span class="text-white font-bold">{`${activity.estado}`}</span>
                                             </a>
                                             </Link>
                                             </div>
