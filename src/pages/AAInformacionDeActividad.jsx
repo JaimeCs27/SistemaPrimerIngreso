@@ -21,31 +21,6 @@ const AAInformacionDeActividad = () => {
     const [responsables, setResponsables] = useState([]); 
     const [recordatorios, setRecordatorios] = useState([]);
 
-    const handleResponse = (idComentario) => {
-        setResponder(false)
-        setLoading(true)
-        const user = JSON.parse(localStorage.getItem('user'))
-        const date = new Date()
-        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ResponderComentario/${id}`,{
-            idComentario, user, date, respuesta
-        }).then((response)=>{
-            setComentarios(response.data)
-            setLoading(false)
-        }).catch((error) =>{
-            setLoading(false)
-        })
-    }   
-
-
-    const handleOpenResponse = (e) => {
-        setIdComment(e)
-        setResponder(true)
-    }
-
-
-
- 
-
     const calculateDaysUntil = (date) => {
         let today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -58,21 +33,6 @@ const AAInformacionDeActividad = () => {
 
         return days;
     };
-
-    const handleComment = () =>{
-        const user = JSON.parse(localStorage.getItem('user'))
-        setLoading(true)
-        const date = new Date()
-        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ComentarActividad/${id}`,{
-            comment, user, date
-        }).then((response)=>{
-            setComentarios(response.data)
-            setLoading(false)
-        }).catch((erro) => {
-            setLoading(false)
-        })
-    }
-
 
     const formatDate = (dateInput) => {
         const date = new Date(dateInput); // Asegura que dateInput se convierta a un objeto Date
@@ -106,9 +66,6 @@ const AAInformacionDeActividad = () => {
             response.data.recordatorios.forEach((recordatorio) => {
                 list.push(formatDate(recordatorio))
             })
-            setRecordatorios(list)
-            setComentarios(response.data.comentarios)
-            setEvidencias(response.data.evidencias)
             let days = calculateDaysUntil(response.data.fecha);
             setDiasRestante(days);
         }).then(()=> {
@@ -228,81 +185,6 @@ const AAInformacionDeActividad = () => {
                                             ))}
                                         </div>
                                     )}
-                                </div>
-                            </div>
-                        </div>
-                        <div className='pt-10'>
-                            <div className='px-[350px]'> {/* Comentar */}
-                                <h3 className='pb-3'>Comentarios y observaciones</h3>
-                                <div className='flex justify-center items-center'>
-                                    <textarea onChange={(e)=>setComment(e.target.value)} rows="5" class="w-full rounded-[10px] p-2.5 text-black focus:outline-none" placeholder='Agregar Comentario'/>
-                                </div>
-                                <div className='flex justify-end pt-3'>
-                                    <button onClick={handleComment} className='mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]'>Comentar</button>
-                                </div>
-                            </div>
-                            <div className='px-[350px] pt-4'> {/* Comentarios */}
-                                <div>
-                                    {loading ? (
-                                        <div>
-                                            </div>
-                                    ) : (
-                                        comentarios.map((comentario) => (
-                                            <div>
-                                                    <div>
-                                                        <h3 className='pb-3'>{comentario.profesor} - {comentario.fecha}</h3>
-                                                        <div className='flex justify-center items-center'>
-                                                            <textarea value={comentario.comentario} rows="3" class=" bg-[#061634] w-full rounded-[10px] p-2.5 text-white focus:outline-none" readOnly/>
-                                                        </div>
-                                                        <div className='flex justify-end pt-3'>
-                                                            <button onClick={() => handleOpenResponse(comentario._id)} className='mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]'>Responder</button>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <div>
-                                                        
-                                                        {responder && comentario._id === idComment ? (
-                                                            <div className='pt-3 pl-7'>
-                                                                <div className='flex'>
-                                                                    <div className='pt-4'>
-                                                                        <img src={flecha} className="h-10 mr-4"></img>
-                                                                    </div>
-                                                                    <div className='flex-1'>
-                                                                        <div className='flex justify-center items-center'>
-                                                                            <textarea onChange={(e)=>setRespuesta(e.target.value)} rows="2" className="w-full rounded-[10px] p-2.5 text-black focus:outline-none"/>
-                                                                        </div>
-                                                                        <div className='flex justify-end pt-3'>
-                                                                            <button onClick={()=>handleResponse(comentario._id)} className='mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]'>Comentar</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        ) : (
-                                                            <div/>
-                                                        )}
-                                                        {comentario.respuestas.map((respuesta)=> (
-                                                            <div className='pt-3 pl-7'>
-                                                                <h3 className='pb-3 pl-12'>{comentario.profesor} - {comentario.fecha}</h3>
-                                                                <div className='flex'>
-                                                                    <div className='pt-3'>
-                                                                        <img src={flecha} className="h-10 mr-4"></img>
-                                                                    </div>
-                                                                    <div className='flex-1'>
-                                                                        <div className='flex justify-center items-center'>
-                                                                            <textarea value={respuesta.respuesta}  rows="2" className="w-full bg-[#061634] rounded-[10px] p-2.5 text-white focus:outline-none" readOnly/>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-                                        ))
-                                    )}
-                                    
-                                </div>
-                                <div>
-                                    
                                 </div>
                             </div>
                         </div>
