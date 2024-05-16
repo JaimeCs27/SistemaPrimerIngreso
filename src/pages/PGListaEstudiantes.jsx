@@ -10,6 +10,7 @@ const ListaEstudiantesProfeGuia = () => {
     const [campus, setCampus] = useState("")
     const [campusSelect, setCampusSelect] = useState("")
     const [filter, setFilter] = useState("")
+    const [tipoInforme, setTipoInforme] = useState('')
 
     useEffect(()=>{
         setLoading(true)
@@ -80,6 +81,43 @@ const ListaEstudiantesProfeGuia = () => {
                 setLoading(false)
             }
         }
+    }
+    
+    function handleDownload() {
+        const us = JSON.parse(localStorage.getItem('user'))
+        const campus = us.campus
+        const selectedRadioValue = document.querySelector('input[name="locationType"]:checked').value
+        var route;
+        if(selectedRadioValue=='Campus'){
+            route = 'ProfesorGuiaCoordinador/generarInformeAllCampus'
+        }
+        else{
+            route = `ProfesorGuiaCoordinador/generarInformeCampus/${campus}`
+        }
+        axios({
+            url: `http://localhost:5555/${route}`, 
+            method: 'GET',
+            responseType: 'blob', 
+        })
+        .then((response) => {
+ 
+            const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+            const fileLink = document.createElement('a');
+            
+            fileLink.href = fileURL;
+            fileLink.setAttribute('download', 'informeEstudiantes.xlsx'); 
+            document.body.appendChild(fileLink);
+            
+            fileLink.click();
+    
+        
+            fileLink.parentNode.removeChild(fileLink);
+            window.URL.revokeObjectURL(fileURL);
+        })
+        .catch(error => {
+            console.error('Download error:', error);
+            alert('Error downloading the file');
+        });
     }
 
 
@@ -187,8 +225,18 @@ const ListaEstudiantesProfeGuia = () => {
                         )}
                     </div>
                 </div>
+                <div className="flex justify-center mb-4">
+                    <label className="mr-4">
+                        <input type="radio" name="locationType" value="Campus" className="mr-2" defaultChecked />
+                        Todos los Campus
+                    </label>
+                    <label>
+                        <input type="radio" name="locationType" value="Sede" className="mr-2"  />
+                        Campus Perteneciente
+                    </label>
+                </div>
                 <div className="flex justify-center">
-                    <button className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]">
+                    <button className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]" onClick={handleDownload}>
                         Generar Informe
                     </button>
                 </div>
