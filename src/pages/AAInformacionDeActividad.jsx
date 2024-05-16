@@ -21,6 +21,27 @@ const AAInformacionDeActividad = () => {
     const [responsables, setResponsables] = useState([]); 
     const [recordatorios, setRecordatorios] = useState([]);
 
+    const handleResponse = (idComentario) => {
+        setResponder(false)
+        setLoading(true)
+        const user = JSON.parse(localStorage.getItem('user'))
+        const date = new Date()
+        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ResponderComentario/${id}`,{
+            idComentario, user, date, respuesta
+        }).then((response)=>{
+            setComentarios(response.data)
+            setLoading(false)
+        }).catch((error) =>{
+            setLoading(false)
+        })
+    }   
+
+
+    const handleOpenResponse = (e) => {
+        setIdComment(e)
+        setResponder(true)
+    }
+
 
 
  
@@ -37,6 +58,20 @@ const AAInformacionDeActividad = () => {
 
         return days;
     };
+
+    const handleComment = () =>{
+        const user = JSON.parse(localStorage.getItem('user'))
+        setLoading(true)
+        const date = new Date()
+        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ComentarActividad/${id}`,{
+            comment, user, date
+        }).then((response)=>{
+            setComentarios(response.data)
+            setLoading(false)
+        }).catch((erro) => {
+            setLoading(false)
+        })
+    }
 
 
     const formatDate = (dateInput) => {
@@ -72,6 +107,8 @@ const AAInformacionDeActividad = () => {
                 list.push(formatDate(recordatorio))
             })
             setRecordatorios(list)
+            setComentarios(response.data.comentarios)
+            setEvidencias(response.data.evidencias)
             let days = calculateDaysUntil(response.data.fecha);
             setDiasRestante(days);
         }).then(()=> {
