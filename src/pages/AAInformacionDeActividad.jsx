@@ -176,6 +176,99 @@ const AAInformacionDeActividad = () => {
                                 <img src={afiche} alt="Imagen no encontrada" className="w-full h-full object-cover"></img>
                             </div>
                         </div>
+                        <div className='pt-5'> {/* evidencias*/}
+                            <h3 className=''>Evidencias</h3>
+                            <div>
+                                <div className='custom-scrollbar overflow-auto scrollbar-webkit scrollbar-thin'>
+                                    {loading ? (
+                                        <div/>
+                                    ) : (
+                                        <div>
+                                            {evidencias.map((evidencia) => (
+                                                <div className='pt-3'>
+                                                    <input value={evidencia} type="input" class="p-2.5 w-1/2 z-20 text-sm text-black bg-white rounded-[10px] focus:outline-none"/>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                        <div className='pt-10'>
+                            <div className='px-[350px]'> {/* Comentar */}
+                                <h3 className='pb-3'>Comentarios y observaciones</h3>
+                                <div className='flex justify-center items-center'>
+                                    <textarea onChange={(e)=>setComment(e.target.value)} rows="5" class="w-full rounded-[10px] p-2.5 text-black focus:outline-none" placeholder='Agregar Comentario'/>
+                                </div>
+                                <div className='flex justify-end pt-3'>
+                                    <button onClick={handleComment} className='mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]'>Comentar</button>
+                                </div>
+                            </div>
+                            <div className='px-[350px] pt-4'> {/* Comentarios */}
+                                <div>
+                                    {loading ? (
+                                        <div>
+                                            </div>
+                                    ) : (
+                                        comentarios.map((comentario) => (
+                                            <div>
+                                                    <div>
+                                                        <h3 className='pb-3'>{comentario.profesor} - {comentario.fecha}</h3>
+                                                        <div className='flex justify-center items-center'>
+                                                            <textarea value={comentario.comentario} rows="3" class=" bg-[#061634] w-full rounded-[10px] p-2.5 text-white focus:outline-none" readOnly/>
+                                                        </div>
+                                                        <div className='flex justify-end pt-3'>
+                                                            <button onClick={() => handleOpenResponse(comentario._id)} className='mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]'>Responder</button>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div>
+                                                        
+                                                        {responder && comentario._id === idComment ? (
+                                                            <div className='pt-3 pl-7'>
+                                                                <div className='flex'>
+                                                                    <div className='pt-4'>
+                                                                        <img src={flecha} className="h-10 mr-4"></img>
+                                                                    </div>
+                                                                    <div className='flex-1'>
+                                                                        <div className='flex justify-center items-center'>
+                                                                            <textarea onChange={(e)=>setRespuesta(e.target.value)} rows="2" className="w-full rounded-[10px] p-2.5 text-black focus:outline-none"/>
+                                                                        </div>
+                                                                        <div className='flex justify-end pt-3'>
+                                                                            <button onClick={()=>handleResponse(comentario._id)} className='mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]'>Comentar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ) : (
+                                                            <div/>
+                                                        )}
+                                                        {comentario.respuestas.map((respuesta)=> (
+                                                            <div className='pt-3 pl-7'>
+                                                                <h3 className='pb-3 pl-12'>{comentario.profesor} - {comentario.fecha}</h3>
+                                                                <div className='flex'>
+                                                                    <div className='pt-3'>
+                                                                        <img src={flecha} className="h-10 mr-4"></img>
+                                                                    </div>
+                                                                    <div className='flex-1'>
+                                                                        <div className='flex justify-center items-center'>
+                                                                            <textarea value={respuesta.respuesta}  rows="2" className="w-full bg-[#061634] rounded-[10px] p-2.5 text-white focus:outline-none" readOnly/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                        ))
+                                    )}
+                                    
+                                </div>
+                                <div>
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
