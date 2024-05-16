@@ -121,6 +121,20 @@ const AGPlanDeTrabajo = () => {
         setRecordatorios(prev => [...prev, date])
         setLoadingProf(false)
       }
+    const formatImg = async (img) => {
+    
+        const reader = new FileReader
+        await reader.readAsDataURL(img)
+        const data = new Promise((res,error)=>{
+            reader.onload = () => res(reader.result)
+            reader.onerror = (err) => error(err)
+        })
+        return data 
+    }
+    const handleImage = async (file) =>{
+        const image = await formatImg(file)
+        setAfiche(image)
+    }
 
     return (
         <div>
@@ -200,7 +214,7 @@ const AGPlanDeTrabajo = () => {
                                     </div>
                                     <div className='pl-10'>
                                         <h3 className='pb-2'>Afiche del evento</h3>
-                                        <input name='Afiche_de_la_actividad' class="p-2 w-[400pxpx] text-sm text-white rounded-[10px] cursor-pointer bg-[#061634]" id="file_input" type="file"></input>
+                                        <input name='Afiche_de_la_actividad' onChange={(e) => handleImage(e.target.files[0])} class="p-2 w-[400pxpx] text-sm text-white rounded-[10px] cursor-pointer bg-[#061634]" id="file_input" type="file"></input>
                                     </div>
                                 </div>
                                 <div className='pt-4'>
