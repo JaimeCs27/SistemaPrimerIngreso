@@ -156,6 +156,7 @@ const MDPlanDeTrabajo = () => {
             setEstado(response.data.estado)
             setSemana(response.data.semana)
             setTipo(response.data.tipo)
+            console.log(response.data.afiche)
             handleImage(response.data.afiche)
             setFecha(formatDate(response.data.fecha))
             setHora(response.data.hora)
