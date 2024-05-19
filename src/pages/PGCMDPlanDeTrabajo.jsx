@@ -156,7 +156,7 @@ const MDPlanDeTrabajo = () => {
             setEstado(response.data.estado)
             setSemana(response.data.semana)
             setTipo(response.data.tipo)
-            setAfiche(response.data.afiche)
+            handleImage(response.data.afiche)
             setFecha(formatDate(response.data.fecha))
             setHora(response.data.hora)
             setModalidad(response.data.modalidad)
@@ -195,6 +195,11 @@ const MDPlanDeTrabajo = () => {
         
       }
     
+    const handleImage = async (file) =>{
+        const image = await formatImg(file)
+        setAfiche(image)
+    }
+
     return (
         <div>
             <Header/>
