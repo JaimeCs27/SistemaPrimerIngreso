@@ -177,7 +177,11 @@ const MDPlanDeTrabajo = () => {
                 console.log(response.data)
                 setResponsables(response.data)
                 setLoading(false)
+            }).catch((error) =>{
+                console.log(error)
             })
+        }).catch((error) =>{
+            console.log(error)
         })
     }, [])
 
