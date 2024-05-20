@@ -30,7 +30,7 @@ const AACInfoProfe = () => {
   const formatImg = async (img) => {
     
     const reader = new FileReader
-    await reader.readAsDataURL(img)
+    reader.readAsDataURL(img)
     const data = new Promise((res,error)=>{
         reader.onload = () => res(reader.result)
         reader.onerror = (err) => error(err)
