@@ -27,11 +27,20 @@ const AACInfoProfe = () => {
   const [idTeacher, setId] = useState("")
   const [profilePic, setProfilePic] = useState("")
 
-  const manejarCambioImagen = (event) => {
-      const imagen = event.target.files[0];
-      setImagenSeleccionada(URL.createObjectURL(imagen));
-  };
-
+  const formatImg = async (img) => {
+    
+    const reader = new FileReader
+    await reader.readAsDataURL(img)
+    const data = new Promise((res,error)=>{
+        reader.onload = () => res(reader.result)
+        reader.onerror = (err) => error(err)
+    })
+    return data 
+}
+const handleImage = async (file) =>{
+    const image = await formatImg(file)
+    setProfilePic(image)
+}
   const confirmChanges = () =>{
     const text = "¿Guardar los cambios?"
     if(confirm(text)){
@@ -67,6 +76,7 @@ const AACInfoProfe = () => {
       phoneNumber,
       profilePic
     }).then((response) => {
+      handleImage(response.data.profilePic)
       setNameTitle(response.data.name)
       setSecondNameTitle(response.data.secondName)
       setLastNameTitle(response.data.lastName)
@@ -90,7 +100,7 @@ const AACInfoProfe = () => {
       setEmail(response.data.username)
       setOfficePhone(response.data.officePhone)
       setPhoneNumber(response.data.phoneNumber)
-      setProfilePic(response.data.profilePic)
+      handleImage(response.data.profilePic)
       setCampus(response.data.campus)
       setId(response.data.teacherID)
       setLoading(false)
@@ -207,7 +217,7 @@ const AACInfoProfe = () => {
                   <input
                       type="file"
                       accept="image/*"
-                      onChange={manejarCambioImagen}
+                      onChange={(e) => handleImage(e.target.files[0])}
                       className="hidden" 
                       id="fileInput" 
                   />
