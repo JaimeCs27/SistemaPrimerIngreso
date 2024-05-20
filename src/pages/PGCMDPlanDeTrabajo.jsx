@@ -72,6 +72,17 @@ const MDPlanDeTrabajo = () => {
         })
     }
 
+    const formatImg = async (img) => {
+    
+        const reader = new FileReader
+        await reader.readAsDataURL(img)
+        const data = new Promise((res,error)=>{
+            reader.onload = () => res(reader.result)
+            reader.onerror = (err) => error(err)
+        })
+        return data 
+    }
+
     const calculateDaysUntil = (date) => {
         let today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -370,7 +381,7 @@ const MDPlanDeTrabajo = () => {
                                         {loading ? (
                                             <input name='Afiche_de_la_actividad' class="p-2 w-[400pxpx] text-sm text-white rounded-[10px] cursor-pointer bg-[#061634]" id="file_input" type="file"></input>
                                         ) : (
-                                            <input value={afiche} name='Afiche_de_la_actividad' class="p-2 w-[400pxpx] text-sm text-white rounded-[10px] cursor-pointer bg-[#061634]" id="file_input" type="file"></input>    
+                                            <input onChange={(e) => handleImage(e.target.files[0])} name='Afiche_de_la_actividad' class="p-2 w-[400pxpx] text-sm text-white rounded-[10px] cursor-pointer bg-[#061634]" id="file_input" type="file"></input>    
                                         )}
                                         
                                     </div>
