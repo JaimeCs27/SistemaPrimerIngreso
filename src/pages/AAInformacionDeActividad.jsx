@@ -20,6 +20,7 @@ const AAInformacionDeActividad = () => {
     const [enlace, setEnlace] = useState("");
     const [responsables, setResponsables] = useState([]); 
     const [recordatorios, setRecordatorios] = useState([]);
+    const [evidencias, setEvidencias] = useState([]);
 
     const calculateDaysUntil = (date) => {
         let today = new Date();
