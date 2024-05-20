@@ -241,6 +241,21 @@ const AACartago = () => {
     })
   }
 
+  const formatImg = async (img) => {
+    
+    const reader = new FileReader
+    await reader.readAsDataURL(img)
+    const data = new Promise((res,error)=>{
+        reader.onload = () => res(reader.result)
+        reader.onerror = (err) => error(err)
+    })
+    return data 
+  }
+  const handleImage = async (file) =>{
+    const image = await formatImg(file)
+    setProfilePic(image)
+  }
+
   return (
     <div>
     <Header />
@@ -415,7 +430,7 @@ const AACartago = () => {
                             <p class="mb-2 text-sm text-white"><span class="font-semibold">Click to upload profile pic</span> or drag and drop</p>
                             <p class="text-xs">SVG, PNG, JPG or GIF</p>
                         </div>
-                        <input onChange={(e) => setProfilePic(e.target.value)} id="dropzone-file" type="file" class="hidden" />
+                        <input onChange={(e) => handleImage(e.target.files[0])} id="dropzone-file" type="file" class="hidden" />
                     </label>
                 </div> 
               </div>
