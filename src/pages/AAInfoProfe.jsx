@@ -27,10 +27,6 @@ const InfoProfe = () => {
     const [idTeacher, setId] = useState("")
     const [profilePic, setProfilePic] = useState("")
 
-    const manejarCambioImagen = (event) => {
-        const imagen = event.target.files[0];
-        setImagenSeleccionada(URL.createObjectURL(imagen));
-    };
 
     const confirmChanges = () =>{
       const text = "¿Guardar los cambios?"
@@ -51,7 +47,7 @@ const InfoProfe = () => {
   }
   const handleImage = async (file) =>{
       const image = await formatImg(file)
-      setAfiche(image)
+      setProfilePic(image)
   }
 
     function validatePhoneNumber(phone) {
@@ -82,6 +78,7 @@ const InfoProfe = () => {
         phoneNumber,
         profilePic
       }).then((response) => {
+        handleImage(response.data.profilePic)
         setNameTitle(response.data.name)
         setSecondNameTitle(response.data.secondName)
         setLastNameTitle(response.data.lastName)
@@ -105,7 +102,7 @@ const InfoProfe = () => {
         setEmail(response.data.username)
         setOfficePhone(response.data.officePhone)
         setPhoneNumber(response.data.phoneNumber)
-        setProfilePic(response.data.profilePic)
+        handleImage(response.data.profilePic)
         setCampus(response.data.campus)
         setId(response.data.teacherID)
         setLoading(false)
@@ -223,7 +220,7 @@ const InfoProfe = () => {
                   <input
                       type="file"
                       accept="image/*"
-                      onChange={manejarCambioImagen}
+                      onChange={(e) => handleImage(e.target.files[0])}
                       className="hidden" 
                       id="fileInput" 
                   />
