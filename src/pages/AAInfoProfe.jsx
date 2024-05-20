@@ -102,7 +102,7 @@ const InfoProfe = () => {
         setEmail(response.data.username)
         setOfficePhone(response.data.officePhone)
         setPhoneNumber(response.data.phoneNumber)
-        handleImage(response.data.profilePic)
+        setProfilePic(response.data.profilePic)
         setCampus(response.data.campus)
         setId(response.data.teacherID)
         setLoading(false)
