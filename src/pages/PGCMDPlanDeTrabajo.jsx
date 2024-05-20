@@ -65,6 +65,10 @@ const MDPlanDeTrabajo = () => {
                 setResponsables(response.data)
                 setLoading(false)
             })
+        }).then(()=>{
+            alert('Se Modifico Correctamente')
+        }).catch((error) => {
+            alert('Ocurrio un error al intentar guardar los cambios')
         })
     }
 
@@ -156,7 +160,6 @@ const MDPlanDeTrabajo = () => {
             setEstado(response.data.estado)
             setSemana(response.data.semana)
             setTipo(response.data.tipo)
-            console.log(response.data.afiche)
             handleImage(response.data.afiche)
             setFecha(formatDate(response.data.fecha))
             setHora(response.data.hora)

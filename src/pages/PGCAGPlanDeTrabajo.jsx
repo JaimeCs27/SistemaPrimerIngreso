@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Header from '../components/HeaderProfesorGuiaCoord.jsx'
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 
 const AGPlanDeTrabajo = () => {
+    const navigate = useNavigate()
     const {id} = useParams()
     const [date, setDate] = useState(null)
     const [selection, setSelect] = useState("")
@@ -48,7 +49,8 @@ const AGPlanDeTrabajo = () => {
             comentarios
         }).then(response => {
           console.log(response.data.status)
-
+            alert('Se creo exitosamente la actividad')
+            navigate('/ProfesorGuiaCoordinador/PlanDeTrabajo')
         }).catch(err => {
           console.log(err)
         })
