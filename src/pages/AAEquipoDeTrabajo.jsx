@@ -209,8 +209,11 @@ const AA = () => {
           axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
             setProfes(response.data)
             setLoading(false)
+          }).then(()=>{
+            alert('Profesor Agregado exitosamente')
           }).catch((error) => {
             console.log(error)
+            alert('Ocurrio un problema agregando el profesor')
             setLoading(false)
           })
           

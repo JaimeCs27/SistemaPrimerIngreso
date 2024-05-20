@@ -224,8 +224,11 @@ const AACartago = () => {
           axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
             setProfes(response.data)
             setLoading(false)
+          }).then(()=>{
+            alert('Profesor Agregado exitosamente')
           }).catch((error) => {
             console.log(error)
+            alert('Ocurrio un error agregando el profesor')
             setLoading(false)
           })
           
