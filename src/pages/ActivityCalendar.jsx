@@ -35,7 +35,7 @@ useEffect(()=>{
         <Header/>
         <div className='min-h-screen bg-[#29364E] text-white'>
             <div className='flex p-10'>
-                <div className='w-1/2'>
+                <div className='w-1/2 px-5'>
                     <div className='px-5 pb-5'>
                         <p>Actividades</p>
                     </div>
@@ -51,7 +51,7 @@ useEffect(()=>{
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className='w-1/2 px-5'>
                     <div className='px-5 pb-5'>
                         <p>Proxima Actividad</p>
                     </div>
