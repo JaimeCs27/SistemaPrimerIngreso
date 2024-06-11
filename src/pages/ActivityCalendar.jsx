@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const ActivityCalendar = () => {
     const [activities, setActivities] = useState([])
-
+    const [nextActivity, setNext] = useState({})
 useEffect(()=>{
     const act = [
         {name: "hola", tipo: "arroz con pollo"},
@@ -52,7 +52,78 @@ useEffect(()=>{
                     </div>
                 </div>
                 <div>
-
+                    <div className='px-5 pb-5'>
+                        <p>Proxima Actividad</p>
+                    </div>
+                    <div className='border-2 rounded-[16px] border-[#061634] h-[655px] flex'>
+                        <div className='w-1/2'>
+                            <img src='' alt='Afiche evento'></img>
+                        </div>
+                        <div>
+                            <div className='flex p-2'>
+                                <div>
+                                    <p>Nombre: </p>
+                                </div>
+                                <div>
+                                    <p>Aqui va el nombre</p>
+                                </div>
+                            </div>
+                            <div className='flex p-2'>
+                                <div>
+                                    <p>Tipo: </p>
+                                </div>
+                                <div>
+                                    <p>Aqui va el tipo</p>
+                                </div>
+                            </div>
+                            <div className='flex p-2'>
+                                <div>
+                                    <p>Semana: </p>
+                                </div>
+                                <div>
+                                    <p>Aqui va el semana</p>
+                                </div>
+                            </div>
+                            <div className='flex p-2'>
+                                <div>
+                                    <p>Fecha: </p>
+                                </div>
+                                <div>
+                                    <p>Aqui va el fehca</p>
+                                </div>
+                            </div>
+                            <div className='flex p-2'>
+                                <div>
+                                    <p>hora: </p>
+                                </div>
+                                <div>
+                                    <p>Aqui va el hora</p>
+                                </div>
+                            </div>
+                            <div className='flex p-2'>
+                                <div>
+                                    <p>Modalidad: </p>
+                                </div>
+                                <div>
+                                    <p>Aqui va el Modalidad</p>
+                                </div>
+                            </div>
+                            <div className='flex p-2'>
+                                <div>
+                                    <p>Nombre: </p>
+                                </div>
+                                <div>
+                                    <p>Aqui va el enlace</p>
+                                </div>
+                            </div>
+                            <div className='flex p-2'>
+                                
+                            </div>
+                            <div className='flex p-2'>
+                                
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>

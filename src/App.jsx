@@ -38,6 +38,7 @@ import AACPlanDeTrabajo from './pages/AACPlanDeTrabajo'
 
 
 import ActivityCalendar from './pages/ActivityCalendar'
+import EInfoEstudiante from './pages/EInfoEstudiante'
 
 
 const App = () => {
@@ -80,6 +81,7 @@ const App = () => {
 
 
       <Route path='Estudiantes/Calendario' element={<ActivityCalendar/>}/>
+      <Route path='Estudiantes/MiPerfil' element={<EInfoEstudiante/>}/>
       
     </Routes>
   )

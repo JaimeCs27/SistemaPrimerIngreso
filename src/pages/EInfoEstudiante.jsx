@@ -138,6 +138,9 @@ const InfoEstudiante = () => {
                       <div className="pb-6">
                         <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Email"/>
                       </div>
+                      <div className="pb-6">
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Contraseña actual"/>
+                      </div>
                     </div>
                 ) : (
                   <div>
@@ -168,6 +171,9 @@ const InfoEstudiante = () => {
                     <div className="">
                       <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx"/>
                     </div>
+                    <div className="pb-6">
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Nueva contraseña"/>
+                      </div>
                   </div>
               ) : (
                 <div>
