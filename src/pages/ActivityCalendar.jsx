@@ -64,7 +64,7 @@ useEffect(()=>{
                                 <div>
                                     <p>Nombre: </p>
                                 </div>
-                                <div>
+                                <div className='pl-2'>
                                     <p>Aqui va el nombre</p>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ useEffect(()=>{
                                 <div>
                                     <p>Tipo: </p>
                                 </div>
-                                <div>
+                                <div className='pl-2'>
                                     <p>Aqui va el tipo</p>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@ useEffect(()=>{
                                 <div>
                                     <p>Semana: </p>
                                 </div>
-                                <div>
+                                <div className='pl-2'>
                                     <p>Aqui va el semana</p>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ useEffect(()=>{
                                 <div>
                                     <p>Fecha: </p>
                                 </div>
-                                <div>
+                                <div className='pl-2'>
                                     <p>Aqui va el fehca</p>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@ useEffect(()=>{
                                 <div>
                                     <p>hora: </p>
                                 </div>
-                                <div>
+                                <div className='pl-2'>
                                     <p>Aqui va el hora</p>
                                 </div>
                             </div>
@@ -104,23 +104,17 @@ useEffect(()=>{
                                 <div>
                                     <p>Modalidad: </p>
                                 </div>
-                                <div>
+                                <div className='pl-2'>
                                     <p>Aqui va el Modalidad</p>
                                 </div>
                             </div>
-                            <div className='flex p-2'>
+                            <div className='flex pl-2'>
                                 <div>
                                     <p>Nombre: </p>
                                 </div>
-                                <div>
+                                <div className='pl-2'>
                                     <p>Aqui va el enlace</p>
                                 </div>
-                            </div>
-                            <div className='flex p-2'>
-                                
-                            </div>
-                            <div className='flex p-2'>
-                                
                             </div>
                         </div>
                     </div> 
