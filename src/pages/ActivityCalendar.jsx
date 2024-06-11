@@ -7,6 +7,10 @@ const ActivityCalendar = () => {
 
 useEffect(()=>{
     const act = [
+        {name: "hola", tipo: "arroz con pollo"},
+        {name: "hola", tipo: "arroz con pollo"},
+        {name: "hola", tipo: "arroz con pollo"},
+        {name: "hola", tipo: "arroz con pollo"},
         {name: "hola", tipo: "arroz con pollo"}
     ]
     setActivities(act)
@@ -24,8 +28,8 @@ useEffect(()=>{
                     <div className='border-2 rounded-[16px] border-[#061634] h-[655px]'>
                         <div className='p-2'>
                             {activities && activities.map((activity)=>(
-                                <div className='p-2 bg-[#061634] rounded-[12px] flex items-center'>
-                                    <p>activity.name activity.tipo</p>
+                                <div className='p-3 bg-[#061634] rounded-[12px] flex items-center'>
+                                    <p>{activity.name} {activity.tipo}</p>
                                 </div>
                             ))}
                         </div>
