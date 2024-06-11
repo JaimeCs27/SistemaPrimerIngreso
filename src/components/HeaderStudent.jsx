@@ -10,7 +10,7 @@ const HeaderStudent = () => {
 
   const handlePerfil = () =>{
     const us = JSON.parse(localStorage.getItem('user'))
-    navigate(`/MiPerfil`)
+    navigate(`/Estudiantes/MiPerfil`)
   }
 
   return (

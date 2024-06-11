@@ -92,7 +92,7 @@ const InfoEstudiante = () => {
         setLastNameTitle(response.data.lastName)
         setSecondLastName(response.data.secondLastName)
         setSecondLastNameTitle(response.data.secondLastName)
-        setEmail(response.data.username)vc
+        setEmail(response.data.username)
         setPhoneNumber(response.data.phoneNumber)
         setProfilePic(response.data.profilePic)
         setCampus(response.data.campus)
