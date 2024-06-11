@@ -16,6 +16,7 @@ const Login = () => {
         username,
         password,
       }).then(response => {
+        navigate('/Estudiantes/Calendario')
         if(response.data.status){
           if(response.data.user.password === '1234'){
             alert("Su usuario no posee contraseña por lo cual se redireccionará a una nueva página para que digite su nueva contraseña")
