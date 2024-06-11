@@ -2,7 +2,7 @@ import logo from '../images/LOGOTEC.png'
 import bell from '../images/bell.png'
 import bellNoti from '../images/bell-noti.png'
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const HeaderStudent = () => {
   const navigate = useNavigate()
