@@ -54,7 +54,7 @@ const Notification = () => {
                                                         <p>{noti.mensaje}</p>
                                                     </div>
                                                     <div className='flex-shrink-0'>
-                                                        <img src={basurero} className='w-6 cursor-pointer' alt='basurero' />
+                                                        <img src={basurero} className='w-[24px] h-[24px] cursor-pointer' alt='basurero' />
                                                     </div>
                                                 </div>
                                             </div>

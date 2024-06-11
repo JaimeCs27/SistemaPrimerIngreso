@@ -233,7 +233,7 @@ const InfoEstudiante = () => {
                 </button>
               </div>
 
-              <div className='w-[calc(100%)] p-4 pt-10'> 
+              <div className='w-[calc(100%)] p-4 mt-12'> 
                 <button onClick={confirmChanges} className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]">
                   Cambiar contraseña
                 </button>
