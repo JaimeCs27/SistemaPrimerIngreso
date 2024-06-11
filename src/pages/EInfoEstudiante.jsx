@@ -169,7 +169,7 @@ const InfoEstudiante = () => {
                     <div className="pb-6">
                       <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Segundo Apellido"/>
                     </div>
-                    <div className="">
+                    <div className="pb-6">
                       <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx"/>
                     </div>
                     <div className="pb-6">
@@ -184,7 +184,7 @@ const InfoEstudiante = () => {
                     <div className="pb-6">
                       <input onChange={(e) => setSecondLastName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={secondLastName}/>
                     </div>
-                    <div className="">
+                    <div className="pb-6">
                       <input onChange={(e) => setPhoneNumber(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx" value={phoneNumber}/>
                     </div>
                     <div className="pb-6">
