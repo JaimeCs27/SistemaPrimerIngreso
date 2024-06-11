@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Header from '../components/HeaderAA.jsx'
+import Header from '../components/HeaderStudent.jsx'
 import axios from 'axios'
 import '../../styles.css'
 import {useState } from "react";
@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 
 
-const InfoProfe = () => {
+const InfoEstudiante = () => {
 
     const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
     const {id} = useParams()
@@ -138,9 +138,6 @@ const InfoProfe = () => {
                       <div className="pb-6">
                         <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Email"/>
                       </div>
-                      <div className="pb-6">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx" />
-                      </div>
                     </div>
                 ) : (
                   <div>
@@ -233,4 +230,4 @@ const InfoProfe = () => {
     )
 }
 
-export default InfoProfe
+export default InfoEstudiante

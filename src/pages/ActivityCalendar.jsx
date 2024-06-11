@@ -39,8 +39,8 @@ useEffect(()=>{
                     <div className='px-5 pb-5'>
                         <p>Actividades</p>
                     </div>
-                    <div className='border-2 rounded-[16px] border-[#061634] h-[655px]'>
-                        <div className='p-2 custom-scrollbar overflow-auto'>
+                    <div className='border-2 rounded-[16px] border-[#061634]'>
+                        <div className='p-2 overflow-auto custom-scrollbar h-[655px]'>
                             {activities && activities.map((activity)=>(
                                 <div className='py-2'> 
                                     <div className='p-3 bg-[#061634] rounded-[12px] flex items-center'>
