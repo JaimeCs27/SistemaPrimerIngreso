@@ -54,18 +54,10 @@ const InfoProfe = () => {
       const pattern = /^\d{4}-\d{4}$/;
       return pattern.test(phone);
     }
-    function validatePhoneNumberWithExtension(phoneNumber) {
-      const pattern = /^\d{4}-\d{4}\[\d{4}\]$/;
-      return pattern.test(phoneNumber);
-    }
 
     const handleUpdate = () =>{
       if(!validatePhoneNumber(phoneNumber)){
         alert("Formato del telefono celular incorrecto")
-        return;
-      }
-      if(!validatePhoneNumberWithExtension(officePhone)){
-        alert("Formato del telefono de oficina incorrecto")
         return;
       }
       axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EditarProfesor/${id}`, {
@@ -127,8 +119,8 @@ const InfoProfe = () => {
               ) : (
                 <div>
                   <p className="font-bold text-lg mb-4">Sede: {campus}</p>
-                  <p className="font-bold text-lg mb-4">Profesor(a): {nameTitle} {secondNameTitle} {lastNameTitle} {secondLastNameTitle} </p>
-                  <p className="font-bold text-lg mb-4">ID: {carne}</p>
+                  <p className="font-bold text-lg mb-4">Estudiante: {nameTitle} {secondNameTitle} {lastNameTitle} {secondLastNameTitle} </p>
+                  <p className="font-bold text-lg mb-4">Carné: {carne}</p>
                 </div>
               )}
                 
