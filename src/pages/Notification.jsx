@@ -24,14 +24,14 @@ const Notification = () => {
                         <p>Buzon de entrada</p>
                         <div className="flex space-x-2 items-center mb-4">
                             <div className='py-3'>
-                                <select name='buzon' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                <select name='buzon' class="bg-white w-[185px] h-[30px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                     <option>Leído</option>
                                     <option>No leído</option>
                                     <option selected>Todos</option>
                                 </select>
                             </div>
                             <div className="py-3">
-                                <button className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]">
+                                <button className="bg-[#ffffff] w-[157px] h-[30px] text-[#061931] py-2 px-6 rounded-[10px]">
                                     Aplicar filtros
                                 </button>
                             </div>
@@ -58,7 +58,7 @@ const Notification = () => {
                                                     <p>{noti.mensaje}</p>
 
                                                 </div>
-                                                <div>
+                                                <div className='flex justify-end w-full'>
                                                     <img src={basurero} ></img>
 
                                                 </div>
