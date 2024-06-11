@@ -27,8 +27,7 @@ const HeaderStudent = () => {
         
         <div className="flex p-2 items-center">
           <div className='pr-2'>
-            <img src={bell} className='h-[24px] w-[24px]'></img>
-
+            <Link to={'/Estudiantes/Buzon'}><img src={bell} className='h-[24px] w-[24px]'></img></Link>
           </div>
           <button onClick={handlePerfil} className="bg-[#ffffff] hover:bg-blue-600 px-3 py-2 rounded-full text-sm">Perfil</button>
         </div>

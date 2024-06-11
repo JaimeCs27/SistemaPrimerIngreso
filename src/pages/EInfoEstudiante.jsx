@@ -227,27 +227,6 @@ const InfoEstudiante = () => {
             </div>
             </div>
 
-
-
-            <div className='flex w-full bg-[#29364E] rounded-[16px] mb-3 px-5 border-2 border-[#061634] mt-6'>
-              <div className="w-1/2 p-4">
-                <input type="input" className="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Contraseña actual" value={contrasenaActual}
-                />
-              </div>
-              <div className="w-1/2 p-4">
-                <input type="input" className="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none"
-                  placeholder="Nueva Contraseña" value={nuevaContrasena}
-                />
-              </div>
-
-              <div className="w-1/2 p-4">
-                <button className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]" onClick={() => {handleUpdatePassword}}>
-                  Cambiar contraseña
-                </button>
-              </div>
-            </div>
-
-
         </div>   
         </div>
         </div>  
