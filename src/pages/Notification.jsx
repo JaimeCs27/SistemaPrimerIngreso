@@ -27,7 +27,7 @@ const Notification = () => {
                                 <select name='buzon' class="bg-white w-[250px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                     <option>Leído</option>
                                     <option>No leído</option>
-                                    <option>Todos</option>
+                                    <option selected>Todos</option>
                                 </select>
                             </div>
                             <div className="py-3">
@@ -41,10 +41,7 @@ const Notification = () => {
                         <div className='p-2 overflow-auto custom-scrollbar h-[655px]'>
                             {buzon ? (
                                 <div>
-                                    No se encontraron mensajes nuevos
-                                </div>
-                            ) : (
-                                <div>
+                                
                                 {buzon.map((noti)=>(
                                     <div className='py-2'> 
                                         <div className='flex p-1'>
@@ -64,6 +61,12 @@ const Notification = () => {
                                     </div>
                                 ))}
                                 </div>
+                                
+                            ) : (
+                                <div className='p-4'>
+                                    No se encontraron mensajes nuevos
+                                </div>
+                                
                             ) }
                         </div>
                     </div>
