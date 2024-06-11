@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Header from '../components/HeaderStudent'
-
+import axios from 'axios'
 
 const ActivityCalendar = () => {
+    const [activities, setActivities] = useState([])
+
   return (
     <div>
         <Header/>
@@ -12,8 +14,13 @@ const ActivityCalendar = () => {
                     <div className='px-5'>
                         <p>Actividades</p>
                     </div>
-                    <div className='border-2 border-[#061634] h-[655px]'>
-
+                    <div className='pt-5 border-2 rounded-[16px] border-[#061634] h-[655px]'>
+                        <div className='p-2'>
+                            {activities && activities.map((activity)=>(
+                                <div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div>
