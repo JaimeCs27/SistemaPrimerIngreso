@@ -7,7 +7,13 @@ const Notification = () => {
 
     useEffect(() => {
         const mensaje = [
-            { mensaje: "hola mundo" }
+            { mensaje: "hola mundo" },
+            { mensaje: "hola mundo" },
+            { mensaje: "hola mundo" },
+            { mensaje: "hola mundo" },
+            { mensaje: "hola mundo" },
+            { mensaje: "hola mundo" },
+            { mensaje: "hola mundo" },
         ];
         setBuzon(mensaje);
     }, []);
@@ -22,7 +28,7 @@ const Notification = () => {
                             <p>Buzon de entrada</p>
                             <div className="flex space-x-2 items-center mb-4">
                                 <div className='py-3'>
-                                    <select name='buzon' className="bg-white w-[185px] h-[30px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                    <select name='buzon' className="bg-white w-[185px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                         <option>Leído</option>
                                         <option>No leído</option>
                                         <option selected>Todos</option>
