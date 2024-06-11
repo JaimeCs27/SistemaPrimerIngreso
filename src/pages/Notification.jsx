@@ -59,7 +59,7 @@ const Notification = () => {
 
                                                 </div>
                                                 <div className='flex justify-end w-full'>
-                                                    <img src={basurero} ></img>
+                                                    <img src={basurero} className='w-24'></img>
 
                                                 </div>
                                             </div>
