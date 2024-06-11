@@ -20,7 +20,7 @@ const HeaderStudent = () => {
           <img src={logo} alt="TEC Logo" className="h-6 mr-4" />
           <nav className="flex">
             <Link className='text-white pl-4' to={'/Estudiantes/Calendario'}>
-              <p>Calendario Actividades</p>
+              <p>Calendario de Actividades</p>
             </Link>
           </nav>
         </div>
