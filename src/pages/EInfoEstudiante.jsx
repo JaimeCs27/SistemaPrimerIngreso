@@ -21,10 +21,10 @@ const InfoProfe = () => {
     const [lastName, setLastName] = useState("")
     const [secondLastName, setSecondLastName] = useState("")
     const [email, setEmail] = useState("")
-    const [officePhone, setOfficePhone] = useState("")
+    //const [officePhone, setOfficePhone] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
     const [campus, setCampus] = useState("")
-    const [idTeacher, setId] = useState("")
+    const [carne, setCarne] = useState("")
     const [profilePic, setProfilePic] = useState("")
 
 
@@ -74,8 +74,9 @@ const InfoProfe = () => {
         lastName,
         secondLastName,
         email,
-        officePhone,
+        //officePhone,
         phoneNumber,
+        carne,
         profilePic
       }).then((response) => {
         handleImage(response.data.profilePic)
@@ -99,12 +100,11 @@ const InfoProfe = () => {
         setLastNameTitle(response.data.lastName)
         setSecondLastName(response.data.secondLastName)
         setSecondLastNameTitle(response.data.secondLastName)
-        setEmail(response.data.username)
-        setOfficePhone(response.data.officePhone)
+        setEmail(response.data.username)vc
         setPhoneNumber(response.data.phoneNumber)
         setProfilePic(response.data.profilePic)
         setCampus(response.data.campus)
-        setId(response.data.teacherID)
+        setCarne(response.data.carne)
         setLoading(false)
       }).catch((error) => {
         console.log(error)
@@ -121,14 +121,14 @@ const InfoProfe = () => {
               {loading ? (
                 <div>
                     <p className="font-bold text-lg mb-4">Sede: </p>
-                    <p className="font-bold text-lg mb-4">Profesor(a): </p>
-                    <p className="font-bold text-lg mb-4">ID: </p>
+                    <p className="font-bold text-lg mb-4">Estudiante: </p>
+                    <p className="font-bold text-lg mb-4">Carné: </p>
                 </div>
               ) : (
                 <div>
                   <p className="font-bold text-lg mb-4">Sede: {campus}</p>
                   <p className="font-bold text-lg mb-4">Profesor(a): {nameTitle} {secondNameTitle} {lastNameTitle} {secondLastNameTitle} </p>
-                  <p className="font-bold text-lg mb-4">ID: {idTeacher}</p>
+                  <p className="font-bold text-lg mb-4">ID: {carne}</p>
                 </div>
               )}
                 
@@ -147,7 +147,7 @@ const InfoProfe = () => {
                         <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Email"/>
                       </div>
                       <div className="pb-6">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx[xxxx]" />
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx" />
                       </div>
                     </div>
                 ) : (
@@ -160,9 +160,6 @@ const InfoProfe = () => {
                     </div>
                     <div className="pb-6">
                       <input onChange={(e) => setEmail(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={email}/>
-                    </div>
-                    <div className="pb-6">
-                      <input onChange={(e) => setOfficePhone(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="xxxx-xxxx[xxxx]" value={officePhone}/>
                     </div>
                   </div>
                 )}
