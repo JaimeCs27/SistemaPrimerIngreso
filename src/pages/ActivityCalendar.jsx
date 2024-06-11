@@ -60,7 +60,7 @@ useEffect(()=>{
                             <img src='' alt='Afiche evento'></img>
                         </div>
                         <div className='pt-3'>
-                            <div className='flex p-2 w-[238px] h-[42px]'>
+                            <div className='flex p-2 h-[42px]'>
                                 <div>
                                     <p>Nombre: </p>
                                 </div>
@@ -68,7 +68,7 @@ useEffect(()=>{
                                     <p>Aqui va el nombre</p>
                                 </div>
                             </div>
-                            <div className='flex p-2 w-[238px] h-[42px]'>
+                            <div className='flex p-2 h-[42px]'>
                                 <div>
                                     <p>Tipo: </p>
                                 </div>
@@ -76,7 +76,7 @@ useEffect(()=>{
                                     <p>Aqui va el tipo</p>
                                 </div>
                             </div>
-                            <div className='flex p-2 w-[238px] h-[42px]'>
+                            <div className='flex p-2 h-[42px]'>
                                 <div>
                                     <p>Semana: </p>
                                 </div>
@@ -84,7 +84,7 @@ useEffect(()=>{
                                     <p>Aqui va el semana</p>
                                 </div>
                             </div>
-                            <div className='flex p-2 w-[238px] h-[42px]'>
+                            <div className='flex p-2 h-[42px]'>
                                 <div>
                                     <p>Fecha: </p>
                                 </div>
@@ -92,7 +92,7 @@ useEffect(()=>{
                                     <p>Aqui va el fehca</p>
                                 </div>
                             </div>
-                            <div className='flex p-2 w-[238px] h-[42px]'>
+                            <div className='flex p-2 h-[42px]'>
                                 <div>
                                     <p>hora: </p>
                                 </div>
@@ -100,7 +100,7 @@ useEffect(()=>{
                                     <p>Aqui va el hora</p>
                                 </div>
                             </div>
-                            <div className='flex p-2 w-[238px] h-[42px]'>
+                            <div className='flex p-2 h-[42px]'>
                                 <div>
                                     <p>Modalidad: </p>
                                 </div>
@@ -108,7 +108,7 @@ useEffect(()=>{
                                     <p>Aqui va el Modalidad</p>
                                 </div>
                             </div>
-                            <div className='flex p-2 w-[238px] h-[42px]'>
+                            <div className='flex p-2 h-[42px]'>
                                 <div>
                                     <p>Enlace: </p>
                                 </div>
