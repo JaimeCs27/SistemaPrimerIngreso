@@ -25,8 +25,8 @@ const HeaderStudent = () => {
           </nav>
         </div>
         
-        <div className="flex items-center">
-          <img src={bell} className='pl-3 h-[24px] w-[24px]'></img>
+        <div className="flex p-2 items-center">
+          <img src={bell} className='h-[24px] w-[24px]'></img>
           <button onClick={handlePerfil} className="bg-[#ffffff] hover:bg-blue-600 px-3 py-2 rounded-full text-sm">Perfil</button>
         </div>
       </div>
