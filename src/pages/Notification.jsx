@@ -35,7 +35,7 @@ const Notification = () => {
                                     </select>
                                 </div>
                                 <div className="py-3">
-                                    <button className="bg-[#ffffff] w-[157px] h-[30px] text-[#061931] py-2 px-6 rounded-[10px]">
+                                    <button className="bg-[#ffffff] w-[157px] h-[40px] text-[#061931] py-2 px-6 rounded-[10px]">
                                         Aplicar filtros
                                     </button>
                                 </div>
