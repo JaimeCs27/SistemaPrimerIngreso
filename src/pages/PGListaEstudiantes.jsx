@@ -95,7 +95,7 @@ const ListaEstudiantesProfeGuia = () => {
             route = `ProfesorGuiaCoordinador/generarInformeCampus/${campus}`
         }
         axios({
-            url: `http://localhost:5555/${route}`, 
+            url: `http://tecportfolio-api.onrender.com/${route}`, 
             method: 'GET',
             responseType: 'blob', 
         })
