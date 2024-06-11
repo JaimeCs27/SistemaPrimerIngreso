@@ -31,7 +31,7 @@ const Notification = () => {
                                 </select>
                             </div>
                             <div className="py-3">
-                                <button onClick={handleFilters} className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]">
+                                <button className="bg-[#ffffff] text-[#061931] py-2 px-6 rounded-[10px]">
                                     Aplicar filtros
                                 </button>
                             </div>

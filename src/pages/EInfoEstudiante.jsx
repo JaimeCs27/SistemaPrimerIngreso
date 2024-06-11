@@ -142,7 +142,9 @@ const InfoEstudiante = () => {
                       <div className="pb-6">
                         <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Email"/>
                       </div>
-            
+                      <div className="pb-20">
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Contraseña actual"/>
+                      </div>
                     </div>
                 ) : (
                   <div>
@@ -155,7 +157,9 @@ const InfoEstudiante = () => {
                     <div className="pb-6">
                       <input onChange={(e) => setEmail(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={email}/>
                     </div>
-                   
+                    <div className="pb-20">
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Contraseña actual"/>
+                    </div>
                   </div>
                 )}
                 
@@ -172,6 +176,9 @@ const InfoEstudiante = () => {
                     <div className="pb-6">
                       <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx"/>
                     </div>
+                    <div className="pb-20">
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Nueva contraseña"/>
+                      </div>
                   </div>
               ) : (
                 <div>
@@ -184,12 +191,13 @@ const InfoEstudiante = () => {
                     <div className="pb-6">
                       <input onChange={(e) => setPhoneNumber(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx" value={phoneNumber}/>
                     </div>
-                    
+                    <div className="pb-20">
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Nueva Contraseña"/>
+                    </div>
                   </div>
               )}
                 
             </div>
-
             <div className="w-1/4 p-4 pt-7">
                 {loading ? (
                   <div>
@@ -224,9 +232,16 @@ const InfoEstudiante = () => {
                   Guardar cambios
                 </button>
               </div>
-            </div>
-            </div>
 
+              <div className='w-[calc(100%)] p-4'> 
+                <button onClick={confirmChanges} className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]">
+                  Cambiar contraseña
+                </button>
+              </div> 
+
+            </div>
+            
+            </div>
         </div>   
         </div>
         </div>  
