@@ -54,8 +54,14 @@ const Notification = () => {
                                         </div>
                                         <div className='p-3 bg-[#061634] rounded-[12px] flex items-center'>
                                             <div className='flex justify-between'>
-                                                <p>{noti.mensaje}</p>
-                                                <img src={basurero} ></img>
+                                                <div>
+                                                    <p>{noti.mensaje}</p>
+
+                                                </div>
+                                                <div>
+                                                    <img src={basurero} ></img>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
