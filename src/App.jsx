@@ -37,7 +37,7 @@ import AACInformacionDeActividad from './pages/AACInformacionDeActividad'
 import AACPlanDeTrabajo from './pages/AACPlanDeTrabajo'
 
 
-
+import ActivityCalendar from './pages/ActivityCalendar'
 
 
 const App = () => {
@@ -78,6 +78,8 @@ const App = () => {
       <Route path='ProfesorGuiaCoordinador/PlanDeTrabajo/VerDetalles/:id' element={<PGCActividad/>} />
       <Route path='ProfesorGuiaCoordinador/PlanDeTrabajo/Editar/:id' element={<PGCPlandeTrabajo/>} />
 
+
+      <Route path='Estudiantes/Calendario' element={<ActivityCalendar/>}/>
       
     </Routes>
   )
