@@ -70,7 +70,7 @@ const Login = () => {
     };
 
   const handleNotify = () => {
-    console.log("load data")
+    console.log("load")
     axios.post('https://tecportfolio-api.onrender.com/LoadData', {fecha: systemDate}).then((res)=>{
 
     })
@@ -120,7 +120,6 @@ const Login = () => {
             <input type='date' onChange={(e) => setDate(e.target.value)}></input>
             <button
               className="w-169px h-62px bg-white text-[#29364E] font-bold py-2 px-4 mb-6 rounded"
-              type="submit"
               onClick={handleNotify}
             >
               System Date
