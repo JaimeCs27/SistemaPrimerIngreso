@@ -70,8 +70,9 @@ const Login = () => {
     };
 
   const handleNotify = () => {
+    console.log("load data")
     axios.post('https://tecportfolio-api.onrender.com/LoadData', {fecha: systemDate}).then((res)=>{
-      
+
     })
   }
 
