@@ -54,7 +54,7 @@ const InfoEstudiante = () => {
   }
 
   const handleUpdatePassword = () =>{
-    if(){
+    if(1){
 
     }
 
