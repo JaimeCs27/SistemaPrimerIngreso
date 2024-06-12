@@ -9,6 +9,7 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [showModal, setShowModal] = useState(false);
     const [email, setEmail] = useState('');
+    const [systemDate, setDate] = useState(null)
     const navigate = useNavigate()
     const handleSubmit = (e) => {
       e.preventDefault()
@@ -68,7 +69,13 @@ const Login = () => {
       setEmail('');
     };
 
-  
+  const handleNotify = () => {
+    axios.post('https://tecportfolio-api.onrender.com/LoadData', {fecha: systemDate}).then((res)=>{
+      
+    })
+  }
+
+
   return (
     <div className="flex justify-center items-center h-screen bg-[#29364E] font-['helvetica'] text-[18px]">
       <div className="w-483px m-auto bg-[#29364E] rounded p-5">
@@ -105,6 +112,17 @@ const Login = () => {
               onClick={handleSubmit}
             >
               Iniciar sesión
+            </button>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <input type='date' onChange={(e) => setDate(e.target.value)}></input>
+            <button
+              className="w-169px h-62px bg-white text-[#29364E] font-bold py-2 px-4 mb-6 rounded"
+              type="submit"
+              onClick={handleNotify}
+            >
+              System Date
             </button>
           </div>
 

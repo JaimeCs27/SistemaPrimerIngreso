@@ -26,6 +26,9 @@ const InfoEstudiante = () => {
     const [campus, setCampus] = useState("")
     const [carne, setCarne] = useState("")
     const [profilePic, setProfilePic] = useState("")
+    const [contrasenaActual, setContrasenaActual] = useState("")
+    const [contrasenaNueva, setContrasenaNueva] = useState("")
+
 
 
     const confirmChanges = () =>{
@@ -51,6 +54,9 @@ const InfoEstudiante = () => {
   }
 
   const handleUpdatePassword = () =>{
+    if(){
+
+    }
 
   }
 
@@ -233,11 +239,12 @@ const InfoEstudiante = () => {
                 </button>
               </div>
 
-              <div className='w-[calc(100%)] p-4 mt-22'> 
-                <button onClick={confirmChanges} className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]">
+              <div className='w-[calc(100%)] p-4 mt-20'> 
+                <button onClick={handleUpdatePassword} className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]">
                   Cambiar contraseña
                 </button>
               </div> 
+              
 
             </div>
             
