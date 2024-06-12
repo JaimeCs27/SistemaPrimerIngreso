@@ -71,7 +71,10 @@ const Login = () => {
 
   const handleNotify = () => {
     console.log("load")
-    axios.post('https://tecportfolio-api.onrender.com/users/LoadData', {fecha: systemDate}).then((res)=>{
+    const fecha = systemDate
+    axios.post('https://tecportfolio-api.onrender.com/users/LoadData', {
+      fecha
+    }).then((res)=>{
 
     })
   }
