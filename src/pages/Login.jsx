@@ -116,15 +116,7 @@ const Login = () => {
             </button>
           </div>
 
-          <div class="flex flex-col items-center">
-            <input type='date' onChange={(e) => setDate(e.target.value)}></input>
-            <button
-              className="w-169px h-62px bg-white text-[#29364E] font-bold py-2 px-4 mb-6 rounded"
-              onClick={handleNotify}
-            >
-              System Date
-            </button>
-          </div>
+          
 
           <div class="flex flex-col items-center">
               <Link to="#" className="text-white hover:underline" onClick={handleForgotPasswordClick}>¿Olvidaste tu contraseña?</Link>
@@ -148,6 +140,15 @@ const Login = () => {
               )}
           </div>
         </form>
+        <div class="flex flex-col items-center">
+            <input type='date' onChange={(e) => setDate(e.target.value)}></input>
+            <button
+              className="w-169px h-62px bg-white text-[#29364E] font-bold py-2 px-4 mb-6 rounded"
+              onClick={handleNotify}
+            >
+              System Date
+            </button>
+          </div>
       </div>
     </div>
   )
