@@ -18,6 +18,7 @@ const AGPlanDeTrabajo = () => {
     const [afiche, setAfiche] = useState("");
     const [diasRestantes, setDiasRestantes] = useState("");
     const [fecha, setFecha] = useState("");
+    const [fechaPublicacion, setFechaP] = useState("");
     const [hora, setHora] = useState("");
     const [modalidad, setModalidad] = useState("Presencial");
     const [enlaceReunion, setEnlaceReunion] = useState("");
@@ -32,12 +33,13 @@ const AGPlanDeTrabajo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/CrearActividad', {
+        axios.post(`${api}/ProfesorGuiaCoordinador/CrearActividad`, {
             nombre,
             estado,
             semana,
             tipo,
             afiche,
+            fechaPublicacion,
             fecha,
             hora,
             modalidad,
@@ -58,7 +60,7 @@ const AGPlanDeTrabajo = () => {
 
       const handleAssign = () => {
         setLoadingProf(true)
-        axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/RecuperarProfesor`, {
+        axios.post(`${api}/ProfesorGuiaCoordinador/RecuperarProfesor`, {
             selection
         }).then((response)=>{
             if (responsables.length === 0)
@@ -75,14 +77,14 @@ const AGPlanDeTrabajo = () => {
 
       useEffect(()=>{
         setLoadingProf(true)
-        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ListaProfesores`).then((response)=>{
+        axios.get(`${api}/ProfesorGuiaCoordinador/ListaProfesores`).then((response)=>{
             console.log(response.data)    
             setSearchList(response.data)
             setLoadingProf(false)
         }).catch((error)=>{
             setLoadingProf(false)
         })
-        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Responsables/${id}`).then((response)=>{
+        axios.get(`${api}/ProfesorGuiaCoordinador/Responsables/${id}`).then((response)=>{
             setResponsables(response.data)
             setLoadingProf(false)
         })
@@ -90,7 +92,7 @@ const AGPlanDeTrabajo = () => {
 
       const handleSearch = () =>{
         setLoadingProf(true)
-        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
+        axios.get(`${api}/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
             setSearchList(response.data)
             setLoadingProf(false)
         }).catch((error)=>{
@@ -198,7 +200,7 @@ const AGPlanDeTrabajo = () => {
                                         </div>
                                         <div className='flex pt-4'>
                                             <div>
-                                                <h3 className='pb-2'>Fecha</h3>
+                                                <h3 className='pb-2'>Fecha Evento</h3>
                                                 <input name='Fecha_de_actividad' type='date' onChange={(e) => setFecha(e.target.value)} className='p-2.5 z-20 text-sm text-black bg-white rounded-[10px] focus:outline-none'></input>
                                             </div>
                                             <div className='pl-4'>
@@ -212,6 +214,10 @@ const AGPlanDeTrabajo = () => {
                                                     <option>Remota</option>
                                                 </select>
                                             </div>
+                                        </div>
+                                        <div className='pt-4'>
+                                            <h3 className='pb-2'>Fecha Publicacion</h3>
+                                            <input name='Fecha_de_actividad' type='date' onChange={(e) => setFechaP(e.target.value)} className='p-2.5 z-20 text-sm text-black bg-white rounded-[10px] focus:outline-none'></input>
                                         </div>
                                     </div>
                                     <div className='pl-10'>

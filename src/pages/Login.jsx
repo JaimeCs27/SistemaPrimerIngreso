@@ -13,7 +13,7 @@ const Login = () => {
     const navigate = useNavigate()
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post('https://tecportfolio-api.onrender.com/users/login', {
+      axios.post(`${import.meta.env.api}/users/login`, {
         username,
         password,
       }).then(response => {
@@ -60,7 +60,7 @@ const Login = () => {
       e.preventDefault();
       console.log('restore')
       console.log(email)
-      axios.post('https://tecportfolio-api.onrender.com/users/RestorePassword', {
+      axios.post(`${import.meta.env.api}/users/RestorePassword`, {
         email
       }).then((response) => {
         console.log(response.data)
@@ -72,7 +72,7 @@ const Login = () => {
   const handleNotify = () => {
     console.log("load")
     const fecha = systemDate
-    axios.post('https://tecportfolio-api.onrender.com/users/LoadData', {
+    axios.post(`${import.meta.env.api}/users/LoadData`, {
       fecha
     }).then((res)=>{
 

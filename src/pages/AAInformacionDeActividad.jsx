@@ -51,7 +51,7 @@ const AAInformacionDeActividad = () => {
     useEffect(()=>{
         setLoading(true)
         let listId = {}
-        axios.get(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
+        axios.get(``${api}`/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
             setNombreActividad(response.data.nombre)
             setEstado(response.data.estado)
             setSemana(response.data.semana)
@@ -70,7 +70,7 @@ const AAInformacionDeActividad = () => {
             let days = calculateDaysUntil(response.data.fecha);
             setDiasRestante(days);
         }).then(()=> {
-            axios.post(`https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/Responsables`, {
+            axios.post(``${api}`/ProfesorGuiaCoordinador/Responsables`, {
                 listId
             }).then((response)=>{
                 setResponsables(response.data)

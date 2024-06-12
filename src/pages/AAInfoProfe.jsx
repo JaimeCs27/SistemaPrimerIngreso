@@ -68,7 +68,7 @@ const InfoProfe = () => {
         alert("Formato del telefono de oficina incorrecto")
         return;
       }
-      axios.post(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/EditarProfesor/${id}`, {
+      axios.post(``${api}`/AsistenteAdministrativo/EditarProfesor/${id}`, {
         name,
         secondName,
         lastName,
@@ -89,7 +89,7 @@ const InfoProfe = () => {
 
     useEffect(()=>{
       setLoading(true)
-      axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
+      axios.get(``${api}`/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
       console.log(response.data)  
       setName(response.data.name)
       setNameTitle(response.data.name)

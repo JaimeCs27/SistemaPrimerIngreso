@@ -20,7 +20,7 @@ const ListaEstudiantesProfeGuia = () => {
         setCampus(campusUser)
         setFilter('Por orden alfabético')
         try {
-        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
+        axios.get(``${api}`/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
             console.log(response.data)
             setStudents(response.data)
             setLoading(false)
@@ -41,7 +41,7 @@ const ListaEstudiantesProfeGuia = () => {
         if (filter === 'Por orden alfabético'){
             console.log(campus)
             try {
-                axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                axios.get(``${api}`/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
                     console.log(response.data)
                     response.data.sort((a, b) => {
                         if (a.lastName < b.lastName) {
@@ -65,7 +65,7 @@ const ListaEstudiantesProfeGuia = () => {
         } else if(filter === 'Por número de carné'){
             console.log(campus)
             try {
-                axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                axios.get(``${api}`/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
                     console.log(response.data)
                     response.data.sort((a, b) => {
                         return a.carne.localeCompare(b.carne);
@@ -95,7 +95,7 @@ const ListaEstudiantesProfeGuia = () => {
             route = `ProfesorGuiaCoordinador/generarInformeCampus/${campus}`
         }
         axios({
-            url: `https://tecportfolio-api.onrender.com/${route}`, 
+            url: ``${api}`/${route}`, 
             method: 'GET',
             responseType: 'blob', 
         })

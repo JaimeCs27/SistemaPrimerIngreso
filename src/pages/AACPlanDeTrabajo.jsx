@@ -11,7 +11,7 @@ const AACPlanDeTrabajo = () => {
     useEffect(() => {
         setLoadingActivities(true)
         try{
-            axios.get('https://tecportfolio-api.onrender.com/ProfesorGuiaCoordinador/ListaActividades').then((response) => {  
+            axios.get('`${api}`/ProfesorGuiaCoordinador/ListaActividades').then((response) => {  
             setActivities(response.data)
             console.log(response.data)
             setLoadingActivities(false)

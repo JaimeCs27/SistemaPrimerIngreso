@@ -14,7 +14,7 @@ const AACListaEstudiantes = () => {
         const us = JSON.parse(localStorage.getItem('user'))
         const campus = us.campus
         try {
-        axios.get(`https://tecportfolio-api.onrender.com/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+        axios.get(``${api}`/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
             setStudents(response.data)
             setLoading(false)
         }).catch((error) => {
@@ -58,7 +58,7 @@ const AACListaEstudiantes = () => {
             console.log('Excel file mising')
         }
         console.log(data)
-      axios.post('https://tecportfolio-api.onrender.com/AsistenteAdministrativo/subirArchivo', {
+      axios.post('`${api}`/AsistenteAdministrativo/subirArchivo', {
         data
       }).then(response =>{
         
