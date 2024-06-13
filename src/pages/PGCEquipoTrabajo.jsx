@@ -12,7 +12,7 @@ const EquipoTrabajo = () => {
   useEffect(() => {
     setLoadingTeam(true)
     try{
-      axios.get('`${api}`/AsistenteAdministrativo/EquipoTrabajo').then((response) => {  
+      axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EquipoTrabajo`).then((response) => {  
         setTeamwork(response.data)
         setLoadingTeam(false)
         console.log(response.data)

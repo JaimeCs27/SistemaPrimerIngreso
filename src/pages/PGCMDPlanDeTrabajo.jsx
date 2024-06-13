@@ -38,7 +38,7 @@ const MDPlanDeTrabajo = () => {
     const handleModify = () => {
         setLoading(true)
         let listId = {}
-        axios.post(``${api}`/ProfesorGuiaCoordinador/ModificarActividad/${id}`, {
+        axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/ModificarActividad/${id}`, {
             nombreActividad, semana, tipo, afiche, estado, fecha, hora, modalidad, responsables, recordatorios, evidencias
         }).then((response) => {
             setNombreActividad(response.data.nombre)
@@ -58,7 +58,7 @@ const MDPlanDeTrabajo = () => {
             setRecordatorios(list)
             setEvidencias(response.data.evidencias)
         }).then(()=> {
-            axios.post(``${api}`/ProfesorGuiaCoordinador/Responsables`, {
+            axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/Responsables`, {
                 listId
             }).then((response)=>{
                 console.log(response.data)
@@ -111,7 +111,7 @@ const MDPlanDeTrabajo = () => {
 
       const handleSearch = () =>{
         setLoading(true)
-        axios.get(``${api}`/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
+        axios.get(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
             setSearchList(response.data)
             setLoading(false)
         }).catch((error)=>{
@@ -136,7 +136,7 @@ const MDPlanDeTrabajo = () => {
     
       const handleAssign = () => {
         setLoading(true)
-        axios.post(``${api}`/ProfesorGuiaCoordinador/RecuperarProfesor`, {
+        axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/RecuperarProfesor`, {
             selection
         }).then((response)=>{
             if (responsables.length === 0)
@@ -165,7 +165,7 @@ const MDPlanDeTrabajo = () => {
     useEffect(()=>{
         setLoading(true)
         let listId = {}
-        axios.get(``${api}`/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
+        axios.get(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
             console.log(response.data)
             setNombreActividad(response.data.nombre)
             setEstado(response.data.estado)
@@ -186,7 +186,7 @@ const MDPlanDeTrabajo = () => {
 
             console.log(listId)
         }).then(()=> {
-            axios.post(``${api}`/ProfesorGuiaCoordinador/Responsables`, {
+            axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/Responsables`, {
                 listId
             }).then((response)=>{
                 console.log(response.data)

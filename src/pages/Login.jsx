@@ -13,18 +13,19 @@ const Login = () => {
     const navigate = useNavigate()
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post(`${import.meta.env.api}/users/login`, {
+      axios.post(`${import.meta.env.VITE_API}/users/login`, {
         username,
         password,
       }).then(response => {
-        navigate('/Estudiantes/Calendario')
         if(response.data.status){
           if(response.data.user.password === '1234'){
             alert("Su usuario no posee contraseña por lo cual se redireccionará a una nueva página para que digite su nueva contraseña")
             navigate(`/RestorePassword/${response.data.user._id}`)
           }else{
             localStorage.setItem('user', JSON.stringify(response.data.user))
-            if(response.data.user.isAdministrative)
+            if(response.data.message === "student")
+              navigate('/Estudiantes/Calendario')
+            else if(response.data.user.isAdministrative)
               if(response.data.user.campus === "Cartago")
                 navigate('/AsistenteAdministrativoCartago/EquipoDeTrabajo')
               else
@@ -60,7 +61,7 @@ const Login = () => {
       e.preventDefault();
       console.log('restore')
       console.log(email)
-      axios.post(`${import.meta.env.api}/users/RestorePassword`, {
+      axios.post(`${import.meta.env.VITE_API}/users/RestorePassword`, {
         email
       }).then((response) => {
         console.log(response.data)
@@ -72,7 +73,7 @@ const Login = () => {
   const handleNotify = () => {
     console.log("load")
     const fecha = systemDate
-    axios.post(`${import.meta.env.api}/users/LoadData`, {
+    axios.post(`${import.meta.env.VITE_API}/users/LoadData`, {
       fecha
     }).then((res)=>{
 

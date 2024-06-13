@@ -70,13 +70,12 @@ const InfoEstudiante = () => {
         alert("Formato del telefono celular incorrecto")
         return;
       }
-      axios.post(``${api}`/AsistenteAdministrativo/EditarProfesor/${id}`, {
+      axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EditarProfesor/${id}`, {
         name,
         secondName,
         lastName,
         secondLastName,
         email,
-        //officePhone,
         phoneNumber,
         carne,
         profilePic
@@ -92,7 +91,7 @@ const InfoEstudiante = () => {
 
     useEffect(()=>{
       setLoading(true)
-      axios.get(``${api}`/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
+      axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
       console.log(response.data)  
       setName(response.data.name)
       setNameTitle(response.data.name)
@@ -211,8 +210,8 @@ const InfoEstudiante = () => {
                 ) : (
                   <div>
                     {profilePic && (
-                      <div>
-                          <img src={profilePic} alt="Imagen seleccionada" />
+                      <div className=''>
+                          <img src={profilePic} alt="Imagen seleccionada" className='object-cover rounded-full w-[270px] h-[270px]'/>
                       </div>
                     )}
                   </div>

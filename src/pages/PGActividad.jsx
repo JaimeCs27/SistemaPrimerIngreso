@@ -34,7 +34,7 @@ const PGPlandeTrabajo = () => {
         setLoading(true)
         const user = JSON.parse(localStorage.getItem('user'))
         const date = new Date()
-        axios.post(``${api}`/ProfesorGuiaCoordinador/ResponderComentario/${id}`,{
+        axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/ResponderComentario/${id}`,{
             idComentario, user, date, respuesta
         }).then((response)=>{
             setComentarios(response.data)
@@ -67,7 +67,7 @@ const PGPlandeTrabajo = () => {
         const user = JSON.parse(localStorage.getItem('user'))
         setLoading(true)
         const date = new Date()
-        axios.post(``${api}`/ProfesorGuiaCoordinador/ComentarActividad/${id}`,{
+        axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/ComentarActividad/${id}`,{
             comment, user, date
         }).then((response)=>{
             setComentarios(response.data)
@@ -93,7 +93,7 @@ const PGPlandeTrabajo = () => {
     useEffect(()=>{
         setLoading(true)
         let listId = {}
-        axios.get(``${api}`/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
+        axios.get(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
             setNombreActividad(response.data.nombre)
             setEstado(response.data.estado)
             setSemana(response.data.semana)
@@ -115,7 +115,7 @@ const PGPlandeTrabajo = () => {
             let days = calculateDaysUntil(response.data.fecha);
             setDiasRestante(days);
         }).then(()=> {
-            axios.post(``${api}`/ProfesorGuiaCoordinador/Responsables`, {
+            axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/Responsables`, {
                 listId
             }).then((response)=>{
                 setResponsables(response.data)

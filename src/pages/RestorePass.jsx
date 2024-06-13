@@ -11,7 +11,7 @@ const Restore = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.post(``${api}`/users/restore/${id}`, {
+      axios.post(`${import.meta.env.VITE_API}/users/restore/${id}`, {
         password,
       }).then(response => {
         if(response.data.status){

@@ -24,14 +24,14 @@ const AACartago = () => {
   const [loadingRepresentante, setLoadingRepresentante] = useState(false)
 
   const handleAssignCoord = () => {
-    axios.post(``${api}`/AsistenteAdministrativo/AsignarCoordinador`, {
+    axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/AsignarCoordinador`, {
       coordSelection
     }).then((response) => {
       
     }).then(()=>{
       setLoadingTeam(true)
       try{
-        axios.get('`${api}`/AsistenteAdministrativo/EquipoTrabajo').then((response) => {  
+        axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EquipoTrabajo`).then((response) => {  
           setTeamwork(response.data)
           setLoadingTeam(false)
         }).catch((error) => {
@@ -49,7 +49,7 @@ const AACartago = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
     setLoadingRepresentante(true)
-    axios.post(`${api}/AsistenteAdministrativo/AsignarRepresentante`,{
+    axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/AsignarRepresentante`,{
       selection, campus
     }).then((response) => {
       console.log(response)
@@ -70,7 +70,7 @@ const AACartago = () => {
       setLoadingRepresentante(false)
       setLoadingTeam(true)
       try{
-        axios.get(`${api}/AsistenteAdministrativo/EquipoTrabajo`).then((response) => {    
+        axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EquipoTrabajo`).then((response) => {    
         setTeamwork(response.data)
           setLoadingTeam(false)
         }).catch((error) => {
@@ -89,7 +89,7 @@ const AACartago = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
     setLoadingRepresentante(true)
-    axios.post(`${api}/AsistenteAdministrativo/DarDeBaja`, {
+    axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/DarDeBaja`, {
       campus
     }).then((response) => {
       if (response.data === 'Success'){
@@ -100,7 +100,7 @@ const AACartago = () => {
       setLoadingRepresentante(false)
       setLoadingTeam(true)
       try{
-        axios.get(`${import.meta.env.api}/AsistenteAdministrativo/EquipoTrabajo`).then((response) => {    
+        axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EquipoTrabajo`).then((response) => {    
         setTeamwork(response.data)
           setLoadingTeam(false)
         }).catch((error) => {
@@ -120,7 +120,7 @@ const AACartago = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
 
-    axios.get(``${api}`/AsistenteAdministrativo/ListaProfesores/${searchName}?campus=${campus}`).then((response) => {
+    axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/ListaProfesores/${searchName}?campus=${campus}`).then((response) => {
       setProfes(response.data)
       setLoading(false)
     }).catch((error) =>{
@@ -132,7 +132,7 @@ const AACartago = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
     setLoadingRepresentante(true)
-    axios.post(``${api}`/AsistenteAdministrativo/RepresentanteSede`, {
+    axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/RepresentanteSede`, {
       campus
     }).then((response) =>{
       if(!Object.keys(response.data).length){
@@ -151,7 +151,7 @@ const AACartago = () => {
   useEffect(() => {
     setLoadingTeam(true)
     try{
-      axios.get('`${api}`/AsistenteAdministrativo/EquipoTrabajo').then((response) => {  
+      axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EquipoTrabajo`).then((response) => {  
         setTeamwork(response.data)
         setLoadingTeam(false)
       }).catch((error) => {
@@ -169,7 +169,7 @@ const AACartago = () => {
     const us = JSON.parse(localStorage.getItem('user'))
     const campus = us.campus
     try {
-      axios.get(`${api}/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
+      axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
         setProfes(response.data)
         setLoading(false)
       }).catch((error) => {
@@ -203,7 +203,7 @@ const AACartago = () => {
       alert("Formato del telefono de oficina incorrecto")
       return;
     }
-    axios.post(``${api}`/AsistenteAdministrativo/AgregarProfesor`, {
+    axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/AgregarProfesor`, {
       name,
       secondName,
       lastName,
@@ -221,7 +221,7 @@ const AACartago = () => {
         const us = JSON.parse(localStorage.getItem('user'))
         const campus = us.campus
         try {
-          axios.get(``${api}`/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
+          axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/ListaProfesores?campus=${campus}`).then((response) => {
             setProfes(response.data)
             setLoading(false)
           }).then(()=>{

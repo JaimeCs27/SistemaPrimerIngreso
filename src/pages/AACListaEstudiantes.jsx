@@ -14,7 +14,7 @@ const AACListaEstudiantes = () => {
         const us = JSON.parse(localStorage.getItem('user'))
         const campus = us.campus
         try {
-        axios.get(``${api}`/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+        axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
             setStudents(response.data)
             setLoading(false)
         }).catch((error) => {
@@ -58,7 +58,7 @@ const AACListaEstudiantes = () => {
             console.log('Excel file mising')
         }
         console.log(data)
-      axios.post('`${api}`/AsistenteAdministrativo/subirArchivo', {
+      axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/subirArchivo`, {
         data
       }).then(response =>{
         

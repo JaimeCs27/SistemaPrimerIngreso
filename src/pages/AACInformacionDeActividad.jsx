@@ -51,7 +51,7 @@ const AACInformacionDeActividad = () => {
     useEffect(()=>{
         setLoading(true)
         let listId = {}
-        axios.get(``${api}`/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
+        axios.get(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/Actividad/${id}`).then((response) => {
             setNombreActividad(response.data.nombre)
             setEstado(response.data.estado)
             setSemana(response.data.semana)
@@ -71,7 +71,7 @@ const AACInformacionDeActividad = () => {
             let days = calculateDaysUntil(response.data.fecha);
             setDiasRestante(days);
         }).then(()=> {
-            axios.post(``${api}`/ProfesorGuiaCoordinador/Responsables`, {
+            axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/Responsables`, {
                 listId
             }).then((response)=>{
                 setResponsables(response.data)

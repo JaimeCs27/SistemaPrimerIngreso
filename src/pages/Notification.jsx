@@ -1,22 +1,71 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/HeaderStudent';
 import basurero from '../images/basurero.png';
+import eye from '../images/eye.png'
+import eyeSlash from '../images/eye-slash.png'
+
+import axios from 'axios'
 
 const Notification = () => {
     const [buzon, setBuzon] = useState([]);
+    const [selected, setSelected] = useState("Todos")
+
+    function ordenarPorFecha(buzon) {
+        return buzon.sort((b, a) => {
+            const horaA = a.hour;
+            const horaB = b.hour;
+            if (horaA < horaB) return -1;
+            if (horaA > horaB) return 1;
+            return 0;
+        });
+    }
 
     useEffect(() => {
-        const mensaje = [
-            { mensaje: "hola mundo" },
-            { mensaje: "hola mundo" },
-            { mensaje: "hola mundo" },
-            { mensaje: "hola mundo" },
-            { mensaje: "hola mundo" },
-            { mensaje: "hola mundo" },
-            { mensaje: "hola mundo" },
-        ];
-        setBuzon(mensaje);
+        const us = JSON.parse(localStorage.getItem('user'))
+        axios.get(`${import.meta.env.VITE_API}/users/buzon/${us._id}`).then((response)=>{
+            setBuzon(ordenarPorFecha(response.data));
+        })
     }, []);
+
+    const handleReadMessage = (noti) => {
+        let aux = []
+        buzon.map((n) => {
+            if(n == noti){
+                n["read"] = true
+            }
+            aux.push(n)
+        })
+        const us = JSON.parse(localStorage.getItem('user'))
+        axios.post(`${import.meta.env.VITE_API}/users/uploadBuzon/${us._id}`,
+            {
+                aux
+            }
+        )
+        setBuzon(ordenarPorFecha(aux))
+    }
+
+    const handleDeleteNoti = (noti) => {
+        let aux = []
+        buzon.map((n) => {
+            if(n != noti){
+                aux.push(n)
+            }
+        })
+        const us = JSON.parse(localStorage.getItem('user'))
+        axios.post(`${import.meta.env.VITE_API}/users/uploadBuzon/${us._id}`,
+            {
+                aux
+            }
+        )
+        setBuzon(ordenarPorFecha(aux))
+    }
+    
+    const handleFilters = () => {
+        const us = JSON.parse(localStorage.getItem('user'))
+        axios.get(`${import.meta.env.VITE_API}/users/filterBuzon/${us._id}?filter=${selected}`).then((response)=>{
+            setBuzon(ordenarPorFecha(response.data))
+        })
+    }
 
     return (
         <div>
@@ -28,14 +77,14 @@ const Notification = () => {
                             <p>Buzon de entrada</p>
                             <div className="flex space-x-2 items-center mb-4">
                                 <div className='py-3'>
-                                    <select name='buzon' className="bg-white w-[185px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                    <select onChange={(e)=>setSelected(e.target.value)} name='buzon' className="bg-white w-[185px] h-[40px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                         <option>Leído</option>
                                         <option>No leído</option>
                                         <option selected>Todos</option>
                                     </select>
                                 </div>
                                 <div className="py-3">
-                                    <button className="bg-[#ffffff] w-[157px] h-[40px] text-[#061931] py-2 px-6 rounded-[10px]">
+                                    <button onClick={handleFilters} className="bg-[#ffffff] w-[157px] h-[40px] text-[#061931] py-2 px-6 rounded-[10px]">
                                         Aplicar filtros
                                     </button>
                                 </div>
@@ -46,23 +95,47 @@ const Notification = () => {
                                 {buzon.length > 0 ? (
                                     <div>
                                         {buzon.map((noti, index) => (
+
                                             <div key={index} className='py-2'>
-                                                <div className='flex p-1'>
-                                                    <div className='pr-4'>
-                                                        <p>Sistema</p>
-                                                    </div>
+                                                {noti.read ? (
                                                     <div>
-                                                        <p>xx/xx/xxxx    xx:xx</p>
+                                                        <div className='flex p-1'>
+                                                            <div className='pr-4'>
+                                                                <p>{noti.author}:</p>
+                                                            </div>
+                                                            <div>
+                                                                <p>{noti.date}    {noti.hour}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className='p-3 bg-[#061634] rounded-[12px] flex justify-between items-center'>
+                                                            <div className='flex-1 flex'>
+                                                                <img src={eye} className='w-[16px] h-[16px] mt-1'></img><p className='pl-2'>{noti.message}</p>
+                                                            </div>
+                                                            <div className='flex-shrink-0'>
+                                                                <img onClick={()=>handleDeleteNoti(noti)} src={basurero} className='w-[24px] h-[24px] cursor-pointer' alt='basurero' />
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className='p-3 bg-[#061634] rounded-[12px] flex justify-between items-center'>
-                                                    <div className='flex-1'>
-                                                        <p>{noti.mensaje}</p>
+                                                ): (
+                                                    <div>
+                                                        <div className='flex p-1'>
+                                                            <div className='pr-4'>
+                                                                <p>{noti.author}:</p>
+                                                            </div>
+                                                            <div>
+                                                                <p>{noti.date}    {noti.hour}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className='cursor-pointer p-3 bg-[#1F2E49] rounded-[12px] flex justify-between items-center'>
+                                                            <button onClick={()=>handleReadMessage(noti)} className='flex'>
+                                                                <div className='flex-1 flex'>
+                                                                    <img src={eyeSlash} className='w-[16px] h-[16px] mt-1'></img><p className='pl-2'>{noti.message}</p>
+                                                                </div>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div className='flex-shrink-0'>
-                                                        <img src={basurero} className='w-[24px] h-[24px] cursor-pointer' alt='basurero' />
-                                                    </div>
-                                                </div>
+                                                )}
+                                                
                                             </div>
                                         ))}
                                     </div>

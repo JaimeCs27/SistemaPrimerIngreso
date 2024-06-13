@@ -24,7 +24,7 @@ const PGEditarInformacionEstudiante = () => {
     const {id} = useParams()
     
     const handleUpdate = () => {
-        axios.post(``${api}`/AsistenteAdministrativo/EditarEstudiante/${id}`, {
+        axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EditarEstudiante/${id}`, {
             name,
             secondName,
             lastName,
@@ -43,7 +43,7 @@ const PGEditarInformacionEstudiante = () => {
         setLoading(true)
         const us = JSON.parse(localStorage.getItem('user'))
         setCampusUser(us.campus)
-        axios.get(``${api}`/AsistenteAdministrativo/VerDetallesEstudiante/${id}`).then((response) =>{
+        axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/VerDetallesEstudiante/${id}`).then((response) =>{
             console.log(response.data)
             setName(response.data.name)
             setNameTitle(response.data.name)

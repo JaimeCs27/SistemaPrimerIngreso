@@ -33,7 +33,7 @@ const AGPlanDeTrabajo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post(`${api}/ProfesorGuiaCoordinador/CrearActividad`, {
+        axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/CrearActividad`, {
             nombre,
             estado,
             semana,
@@ -60,7 +60,7 @@ const AGPlanDeTrabajo = () => {
 
       const handleAssign = () => {
         setLoadingProf(true)
-        axios.post(`${api}/ProfesorGuiaCoordinador/RecuperarProfesor`, {
+        axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/RecuperarProfesor`, {
             selection
         }).then((response)=>{
             if (responsables.length === 0)
@@ -77,14 +77,14 @@ const AGPlanDeTrabajo = () => {
 
       useEffect(()=>{
         setLoadingProf(true)
-        axios.get(`${api}/ProfesorGuiaCoordinador/ListaProfesores`).then((response)=>{
+        axios.get(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/ListaProfesores`).then((response)=>{
             console.log(response.data)    
             setSearchList(response.data)
             setLoadingProf(false)
         }).catch((error)=>{
             setLoadingProf(false)
         })
-        axios.get(`${api}/ProfesorGuiaCoordinador/Responsables/${id}`).then((response)=>{
+        axios.get(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/Responsables/${id}`).then((response)=>{
             setResponsables(response.data)
             setLoadingProf(false)
         })
@@ -92,7 +92,7 @@ const AGPlanDeTrabajo = () => {
 
       const handleSearch = () =>{
         setLoadingProf(true)
-        axios.get(`${api}/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
+        axios.get(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/ListaProfesores/${searchName}`).then((response)=>{    
             setSearchList(response.data)
             setLoadingProf(false)
         }).catch((error)=>{
@@ -154,9 +154,6 @@ const AGPlanDeTrabajo = () => {
                         <div className='py-3'>
                             <select name='Estado_de_la_actividad' onChange={(e) => setEstado(e.target.value)} class="bg-white w-[400px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
                                 <option selected>Planeada</option>
-                                <option>Notificada</option>
-                                <option>Realizada</option>
-                                <option>Cancelada</option>
                             </select>
                         </div>
                         

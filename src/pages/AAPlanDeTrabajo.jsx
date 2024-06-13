@@ -12,7 +12,7 @@ const AAPlanDeTrabajo = () => {
     useEffect(() => {
         setLoadingActivities(true)
         try{
-            axios.get('`${api}`/ProfesorGuiaCoordinador/ListaActividades').then((response) => {  
+            axios.get(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/ListaActividades`).then((response) => {  
             setActivities(response.data)
             console.log(response.data)
             setLoadingActivities(false)

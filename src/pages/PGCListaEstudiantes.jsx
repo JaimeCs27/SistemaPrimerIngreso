@@ -20,7 +20,7 @@ const GListaEstudiantesProfeGuia = () => {
         setCampus(campusUser)
         setFilter('Por orden alfabético')
         try {
-        axios.get(``${api}`/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
+        axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/ListaEstudiantes/${campusUser}`).then((response) => {
             setStudents(response.data)
             setLoading(false)
         }).catch((error) => {
@@ -46,7 +46,7 @@ const GListaEstudiantesProfeGuia = () => {
             route = `ProfesorGuiaCoordinador/generarInformeCampus/${campus}`
         }
         axios({
-            url: ``${api}`/${route}`, 
+            url: `${import.meta.env.VITE_API}/${route}`, 
             method: 'GET',
             responseType: 'blob', 
         })
@@ -77,7 +77,7 @@ const GListaEstudiantesProfeGuia = () => {
         if (filter === 'Por orden alfabético'){
             console.log(campus)
             try {
-                axios.get(``${api}`/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
                     console.log(response.data)
                     response.data.sort((a, b) => {
                         if (a.lastName < b.lastName) {
@@ -101,7 +101,7 @@ const GListaEstudiantesProfeGuia = () => {
         } else if(filter === 'Por número de carné'){
             console.log(campus)
             try {
-                axios.get(``${api}`/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
+                axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/ListaEstudiantes/${campus}`).then((response) => {
                     console.log(response.data)
                     response.data.sort((a, b) => {
                         return a.carne.localeCompare(b.carne);

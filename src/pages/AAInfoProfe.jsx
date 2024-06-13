@@ -68,7 +68,7 @@ const InfoProfe = () => {
         alert("Formato del telefono de oficina incorrecto")
         return;
       }
-      axios.post(``${api}`/AsistenteAdministrativo/EditarProfesor/${id}`, {
+      axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EditarProfesor/${id}`, {
         name,
         secondName,
         lastName,
@@ -89,7 +89,7 @@ const InfoProfe = () => {
 
     useEffect(()=>{
       setLoading(true)
-      axios.get(``${api}`/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
+      axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
       console.log(response.data)  
       setName(response.data.name)
       setNameTitle(response.data.name)

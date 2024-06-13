@@ -30,7 +30,7 @@ const InfoProfeConsulta = () => {
 
   useEffect(()=>{
     setLoading(true)
-    axios.get(``${api}`/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
+    axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
     console.log(response.data)  
     setName(response.data.name)
     setNameTitle(response.data.name)
