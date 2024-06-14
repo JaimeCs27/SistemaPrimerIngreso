@@ -12,7 +12,7 @@ const HeaderStudent = () => {
 
   const handlePerfil = () =>{
     const us = JSON.parse(localStorage.getItem('user'))
-    navigate(`/Estudiantes/MiPerfil`)
+    navigate(`/Estudiantes/MiPerfil/${us._id}`)
   }
 
   useEffect(()=>{

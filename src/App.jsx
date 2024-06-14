@@ -81,7 +81,7 @@ const App = () => {
 
 
       <Route path='Estudiantes/Calendario' element={<ActivityCalendar/>}/>
-      <Route path='Estudiantes/MiPerfil' element={<EInfoEstudiante/>}/>
+      <Route path='Estudiantes/MiPerfil/:id' element={<EInfoEstudiante/>}/>
       <Route path='Estudiantes/Buzon' element={<Notification/>}/>
 
       

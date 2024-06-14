@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 
 
 const InfoEstudiante = () => {
-
     const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
     const {id} = useParams()
     const [loading, setLoading] = useState(false)
@@ -28,12 +27,16 @@ const InfoEstudiante = () => {
     const [profilePic, setProfilePic] = useState("")
     const [contrasenaActual, setContrasenaActual] = useState("")
     const [contrasenaNueva, setContrasenaNueva] = useState("")
-
+    const [changePass, setChange] = useState(false)
 
 
     const confirmChanges = () =>{
       const text = "¿Guardar los cambios?"
       if(confirm(text)){
+        if(phoneNumber === ""){
+          alert("Debe Agregar un número de telefono")
+          return;
+        }
         handleUpdate()
       }
     }
@@ -54,9 +57,17 @@ const InfoEstudiante = () => {
   }
 
   const handleUpdatePassword = () =>{
-    if(1){
-
-    }
+    setChange(false)
+    axios.post(`${import.meta.env.VITE_API}/users/ChangePass/${id}`,{
+      contrasenaActual,
+      contrasenaNueva
+    }).then((response)=>{
+      if(response.data.message === "Actual Incorrecta"){
+        alert("Contraseña Actual es incorrecta")
+        return
+      }
+      alert("Contraseña Modificada exitosamente")
+    })
 
   }
 
@@ -70,38 +81,29 @@ const InfoEstudiante = () => {
         alert("Formato del telefono celular incorrecto")
         return;
       }
-      axios.post(`${import.meta.env.VITE_API}/AsistenteAdministrativo/EditarProfesor/${id}`, {
-        name,
-        secondName,
-        lastName,
-        secondLastName,
-        email,
+      axios.post(`${import.meta.env.VITE_API}/users/EditarEstudiante/${id}`, {
+        profilePic,
         phoneNumber,
-        carne,
-        profilePic
       }).then((response) => {
         handleImage(response.data.profilePic)
-        setNameTitle(response.data.name)
-        setSecondNameTitle(response.data.secondName)
-        setLastNameTitle(response.data.lastName)
-        setSecondLastNameTitle(response.data.secondLastName)
+        setPhoneNumber(response.data.phoneNumber)
       })
       
     }
 
     useEffect(()=>{
       setLoading(true)
-      axios.get(`${import.meta.env.VITE_API}/AsistenteAdministrativo/VerDetalles/${id}`).then((response) =>{
-      console.log(response.data)  
-      setName(response.data.name)
-      setNameTitle(response.data.name)
+      axios.get(`${import.meta.env.VITE_API}/users/perfil/${id}`).then((response) =>{
+        console.log(response.data)  
+        setName(response.data.name)
+        setNameTitle(response.data.name)
         setSecondName(response.data.secondName)
         setSecondNameTitle(response.data.secondName)
         setLastName(response.data.lastName)
         setLastNameTitle(response.data.lastName)
         setSecondLastName(response.data.secondLastName)
         setSecondLastNameTitle(response.data.secondLastName)
-        setEmail(response.data.username)
+        setEmail(response.data.email)
         setPhoneNumber(response.data.phoneNumber)
         setProfilePic(response.data.profilePic)
         setCampus(response.data.campus)
@@ -139,31 +141,26 @@ const InfoEstudiante = () => {
                 {loading ? (
                   <div>
                       <div className="pb-6">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder = "Nombre"/>
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder = "Nombre" disabled/>
                       </div>
                       <div className="pb-6">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder ="Apellido"/>
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder ="Apellido" disabled/>
                       </div>
                       <div className="pb-6">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Email"/>
+                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Email" disabled/>
                       </div>
-                      <div className="pb-6 pt-8">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Contraseña actual"/>
-                      </div>
+                    
                     </div>
                 ) : (
                   <div>
                     <div className="pb-6">
-                      <input onChange={(e) => setName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={name}/>
+                      <input onChange={(e) => setName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={name} disabled/>
                     </div>
                     <div className="pb-6">
-                      <input onChange={(e) => setLastName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={lastName}/>
+                      <input onChange={(e) => setLastName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={lastName} disabled/>
                     </div>
                     <div className="pb-6">
-                      <input onChange={(e) => setEmail(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={email}/>
-                    </div>
-                    <div className="pb-6 pt-8">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Contraseña actual"/>
+                      <input onChange={(e) => setEmail(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={email} disabled/>
                     </div>
                   </div>
                 )}
@@ -173,37 +170,33 @@ const InfoEstudiante = () => {
               {loading ? (
                   <div>
                     <div className="pb-6">
-                      <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Segundo Nombre (opcional)"/>
+                      <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Segundo Nombre (opcional)" disabled/>
                     </div>
                     <div className="pb-6">
-                      <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Segundo Apellido"/>
+                      <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder="Segundo Apellido" disabled/>
                     </div>
                     <div className="pb-6">
                       <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx"/>
                     </div>
-                    <div className="pb-6 pt-8">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Nueva contraseña"/>
-                      </div>
+                    
                   </div>
               ) : (
                 <div>
                     <div className="pb-6">
-                      <input onChange={(e) => setSecondName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={secondName}/>
+                      <input onChange={(e) => setSecondName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={secondName} disabled/>
                     </div>
                     <div className="pb-6">
-                      <input onChange={(e) => setSecondLastName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={secondLastName}/>
+                      <input onChange={(e) => setSecondLastName(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" value={secondLastName} disabled/>
                     </div>
                     <div className="pb-6">
                       <input onChange={(e) => setPhoneNumber(e.target.value)} type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "xxxx-xxxx" value={phoneNumber}/>
                     </div>
-                    <div className="pb-6 pt-8">
-                        <input type="input" class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Nueva Contraseña"/>
-                    </div>
+                    
                   </div>
               )}
                 
             </div>
-            <div className="w-1/4 p-4 pt-7">
+            <div className=" p-4 pt-7">
                 {loading ? (
                   <div>
                     </div>
@@ -211,7 +204,7 @@ const InfoEstudiante = () => {
                   <div>
                     {profilePic && (
                       <div className=''>
-                          <img src={profilePic} alt="Imagen seleccionada" className='object-cover rounded-full w-[270px] h-[270px]'/>
+                          <img src={profilePic} alt="Imagen seleccionada" className='object-cover rounded-full w-[180px] h-[180px]'/>
                       </div>
                     )}
                   </div>
@@ -237,18 +230,35 @@ const InfoEstudiante = () => {
                   Guardar cambios
                 </button>
               </div>
-
-              <div className='w-[calc(100%)] p-4 mt-20'> 
-                <button onClick={handleUpdatePassword} className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]">
-                  Cambiar contraseña
-                </button>
-              </div> 
               
 
             </div>
             
             </div>
-        </div>   
+        </div>
+          
+        </div>
+        <div className='p-10'>
+          {changePass ? (
+            <div className='flex'>
+              <div className="">
+                <input type="input" onChange={(e)=>setContrasenaActual(e.target.value)} class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Contraseña actual"/>
+              </div>
+              <div className="pl-5">
+                  <input type="input" onChange={(e)=>setContrasenaNueva(e.target.value)} class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Nueva Contraseña"/>
+              </div>
+              <button onClick={handleUpdatePassword} className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]">
+                  Confirmar contraseña
+                </button>
+            </div>
+          ) : (
+            <div>
+              <button onClick={()=> setChange(true)} className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]">
+                Cambiar contraseña
+              </button>
+            </div>
+          )}
+          
         </div>
         </div>  
     </div>
