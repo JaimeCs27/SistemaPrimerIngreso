@@ -73,10 +73,12 @@ const Login = () => {
   const handleNotify = () => {
     console.log("load")
     const fecha = systemDate
+    const system = {systemDate: fecha}
+      localStorage.setItem('systemDate', JSON.stringify(system))
     axios.post(`${import.meta.env.VITE_API}/users/LoadData`, {
       fecha
     }).then((res)=>{
-
+      
     })
   }
 
