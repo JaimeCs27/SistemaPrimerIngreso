@@ -23,6 +23,8 @@ const MDPlanDeTrabajo = () => {
     const [hora, setHora] = useState("");
     const [modalidad, setModalidad] = useState(""); 
     const [estado, setEstado] = useState("");
+    const [estadoActual, setEstadoActual] = useState("");
+    const [justificacion, setJustificacion] = useState("")
     const [enlace, setEnlace] = useState("");
     const [evidencia, setEvidencia] = useState('')
     const [responsables, setResponsables] = useState([]); 
@@ -38,8 +40,19 @@ const MDPlanDeTrabajo = () => {
     const handleModify = () => {
         setLoading(true)
         let listId = {}
+        if(estadoActual === "Cancelada" && justificacion === ""){
+            alert("Debe agregar una justificacion de la cancelacion")
+            return
+        }
+        let estadoA = "asd";
+        if(estadoActual !== "Cancelada" && estadoActual !== "Realizada"){
+            estadoA = estado
+        }else{
+            estadoA = estadoActual
+        }
+        console.log(estadoA)
         axios.post(`${import.meta.env.VITE_API}/ProfesorGuiaCoordinador/ModificarActividad/${id}`, {
-            nombreActividad, semana, tipo, afiche, estado, fecha, hora, modalidad, responsables, recordatorios, evidencias
+            nombreActividad, semana, tipo, afiche, estadoA, fecha, hora, modalidad, responsables, recordatorios, evidencias, justificacion
         }).then((response) => {
             setNombreActividad(response.data.nombre)
             setEstado(response.data.estado)
@@ -49,6 +62,7 @@ const MDPlanDeTrabajo = () => {
             setFecha(formatDate(response.data.fecha))
             setHora(response.data.hora)
             setModalidad(response.data.modalidad)
+            setJustificacion(response.data.justificacion)
             setEnlace(response.data.enlaceReunion)
             listId={list: response.data.responsables}
             const list = []
@@ -171,7 +185,7 @@ const MDPlanDeTrabajo = () => {
             setEstado(response.data.estado)
             setSemana(response.data.semana)
             setTipo(response.data.tipo)
-            handleImage(response.data.afiche)
+            setAfiche(response.data.afiche)
             setFecha(formatDate(response.data.fecha))
             setHora(response.data.hora)
             setModalidad(response.data.modalidad)
@@ -231,7 +245,7 @@ const MDPlanDeTrabajo = () => {
                             </div>
                         )}
                         
-                        <h3>Estado actual</h3>
+                        <h3>Estado actual: {estado} </h3>
                         <div className='py-3'>
                             {loading ? (
                                 <select name='Estado_de_la_actividad' class="bg-white w-[400px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
@@ -239,47 +253,26 @@ const MDPlanDeTrabajo = () => {
                                 </select>
                             ) : (
                                 <div>
-                                {estado === 'Planeada' ? (
-                                    <select onChange={(e) => setEstado(e.target.value)} name='Estado_de_la_actividad' class="bg-white w-[400px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                        <option selected>Planeada</option>
+                                    <select onChange={(e) => setEstadoActual(e.target.value)} name='Estado_de_la_actividad' class="bg-white w-[400px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
+                                        <option selected>Elegir Estado</option>
                                         <option >Cancelada</option>
                                         <option >Realizada</option>
-                                        <option >Notificada</option>
                                     </select>
-                                ) : (
-                                    estado === 'Notificada' ? (
-                                        <select onChange={(e) => setEstado(e.target.value)} name='Estado_de_la_actividad' class="bg-white w-[400px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                        <option >Planeada</option>
-                                        <option >Cancelada</option>
-                                        <option >Realizada</option>
-                                        <option selected>Notificada</option>
-                                    </select>
-                                    ) : (
-                                        estado === 'Cancelada' ? (
-                                            <select onChange={(e) => setEstado(e.target.value)} name='Estado_de_la_actividad' class="bg-white w-[400px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                                <option >Planeada</option>
-                                                <option selected>Cancelada</option>
-                                                <option >Realizada</option>
-                                                <option >Notificada</option>
-                                            </select>
-                                        ): (
-                                            estado === 'Realizada' ? (
-                                                <select onChange={(e) => setEstado(e.target.value)} name='Estado_de_la_actividad' class="bg-white w-[400px] text-black text-sm rounded-[10px] p-2.5 focus:outline-none">
-                                                    <option >Planeada</option>
-                                                    <option >Cancelada</option>
-                                                    <option selected>Realizada</option>
-                                                    <option >Notificada</option>
-                                                </select>
-                                            ) : (
-                                                <div/>
-                                            )
-                                        )
-                                    )
-                                )}
                                 </div>
                             )}
                             
                         </div>
+                        {estadoActual === "Cancelada" ? (
+                            <div>
+                            <h3>Justificacion </h3>
+                            <div className='py-3'>
+                                <input className="p-2.5 w-1/4 z-20 text-sm text-black bg-white rounded-[12px] focus:outline-none" type="text" onChange={(e)=> setJustificacion(e.target.value)}></input>
+                            </div>
+                            </div>
+                        ):(
+                            <div></div>
+                        ) }
+                        
                         <div className='flex pt-3'>
                             <div className='p-4 rounded-[12px] w-[1000px] border-2 border-[#061634]'>
                                 <div className='flex'>
@@ -485,38 +478,44 @@ const MDPlanDeTrabajo = () => {
                                 </div>
                                 <div className='pt-4'>
                                     <div className='p-2 rounded-[10px] border-2 border-[#061634]'>
-                                        <h3>Evidencias</h3>
-                                        <div className='pt-3 flex'>
-                                            <input onChange={(e) => setEvidencia(e.target.value)} name='Path_evidencia' class="p-2 w-[400pxpx] text-sm text-white rounded-[10px] cursor-pointer bg-[#061634]" id="file_input" type="file"></input>
-                                            <div className='pt-1'>
-                                                <button onClick={handleEvidencia} class='text-sm py-2 px-4 bg-white text-[#061931] rounded-[10px] mx-2'>Agregar Evidencia</button>
-                                            </div>
-                                        </div>
-                                        <div className='pt-3'>
-                                                {loading ? (
-                                                    <div className='flex pb-3'>
-                                                        <input name='Evidencia' type='input' className='p-2 w-[300px] text-sm text-black bg-white rounded-[10px] focus:outline-none'/>
-                                                        <div className='pt-1 pl-2'>
-                                                            <button>
-                                                                <img src={basurero} className='h-7'></img>
-                                                            </button>
-                                                        </div>
+                                        {estadoActual === "Realizada" ? (
+                                            <div>
+                                                <h3>Evidencias</h3>
+                                                <div className='pt-3 flex'>
+                                                    <input onChange={(e) => setEvidencia(e.target.value)} name='Path_evidencia' class="p-2 w-[400pxpx] text-sm text-white rounded-[10px] cursor-pointer bg-[#061634]" id="file_input" type="file"></input>
+                                                    <div className='pt-1'>
+                                                        <button onClick={handleEvidencia} class='text-sm py-2 px-4 bg-white text-[#061931] rounded-[10px] mx-2'>Agregar Evidencia</button>
                                                     </div>
-                                                ) : (
-                                                    <div>
-                                                    {evidencias.map((evidencia) => (
-                                                        <div className='flex pb-3'>
-                                                            <input value={evidencia} name='Evidencia' type='text' className='p-2 w-[300px] text-sm text-black bg-white rounded-[10px] focus:outline-none'/>
-                                                            <div className='pt-1 pl-2'>
-                                                            <button onClick={handleEraseEvidencia} data-value={evidencia}>
-                                                                <img src={basurero} className='h-7'></img>
-                                                            </button>
+                                                </div>
+                                                <div className='pt-3'>
+                                                        {loading ? (
+                                                            <div className='flex pb-3'>
+                                                                <input name='Evidencia' type='input' className='p-2 w-[300px] text-sm text-black bg-white rounded-[10px] focus:outline-none'/>
+                                                                <div className='pt-1 pl-2'>
+                                                                    <button>
+                                                                        <img src={basurero} className='h-7'></img>
+                                                                    </button>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    ))}
-                                                    </div>
-                                                )}
-                                        </div>
+                                                        ) : (
+                                                            <div>
+                                                            {evidencias.map((evidencia) => (
+                                                                <div className='flex pb-3'>
+                                                                    <input value={evidencia} name='Evidencia' type='text' className='p-2 w-[300px] text-sm text-black bg-white rounded-[10px] focus:outline-none'/>
+                                                                    <div className='pt-1 pl-2'>
+                                                                    <button onClick={handleEraseEvidencia} data-value={evidencia}>
+                                                                        <img src={basurero} className='h-7'></img>
+                                                                    </button>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                            </div>
+                                                        )}
+                                                </div>
+                                            </div>
+                                        ):(
+                                            <div></div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
