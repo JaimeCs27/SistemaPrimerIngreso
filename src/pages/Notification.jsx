@@ -20,13 +20,8 @@ const Notification = () => {
     // Función para ordenar la lista de eventos de forma descendente por fecha y hora
     function ordenarPorFecha(eventos) {
         return eventos.sort((a, b) => {
-            console.log(a);
-            console.log(b);
             const dateA = parseDateTime(a.date, a.hour);
             const dateB = parseDateTime(b.date, b.hour);
-
-            console.log(dateA);
-            console.log(dateB);
             return dateB - dateA; // Orden descendente
         });
     }
