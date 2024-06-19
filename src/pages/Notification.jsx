@@ -13,6 +13,9 @@ const Notification = () => {
     // Función para convertir fecha y hora en un objeto Date
     function parseDateTime(fecha, hora) {
         const [month, day, year] = fecha.split('/');
+        console.log(month);
+        console.log(day);
+        console.log(year);
         return new Date(`${year}-${month}-${day}T${hora}`);
     }
 
