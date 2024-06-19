@@ -242,10 +242,10 @@ const InfoEstudiante = () => {
           {changePass ? (
             <div className='flex'>
               <div className="">
-                <input type="input" onChange={(e)=>setContrasenaActual(e.target.value)} class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Contraseña actual"/>
+                <input type="password" onChange={(e)=>setContrasenaActual(e.target.value)} class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Contraseña actual"/>
               </div>
               <div className="pl-5">
-                  <input type="input" onChange={(e)=>setContrasenaNueva(e.target.value)} class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Nueva Contraseña"/>
+                  <input type="password" onChange={(e)=>setContrasenaNueva(e.target.value)} class="p-2.5 w-full z-20 text-sm text-black bg-white rounded-[16px] focus:outline-none" placeholder= "Nueva Contraseña"/>
               </div>
               <button onClick={handleUpdatePassword} className="mx-2 bg-[#ffffff] text-[#061931] py-1 px-4 rounded-[10px]">
                   Confirmar contraseña
