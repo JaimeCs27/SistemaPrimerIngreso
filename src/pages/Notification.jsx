@@ -12,17 +12,21 @@ const Notification = () => {
 
     // Función para convertir fecha y hora en un objeto Date
     function parseDateTime(fecha, hora) {
-        return new Date(`${fecha}T${hora}`);
+        const [month, day, year] = fecha.split('/');
+        return new Date(`${year}-${month}-${day}T${hora}`);
     }
 
     // Función para ordenar la lista de eventos de forma descendente por fecha y hora
     function ordenarPorFecha(eventos) {
         return eventos.sort((a, b) => {
+            console.log(a);
+            console.log(b);
             const dateA = parseDateTime(a.date, a.hour);
             const dateB = parseDateTime(b.date, b.hour);
+
             console.log(dateA);
             console.log(dateB);
-            return dateA - dateB; // Orden descendente
+            return dateB - dateA; // Orden descendente
         });
     }
     useEffect(() => {
