@@ -9,7 +9,7 @@ import axios from 'axios'
 const Notification = () => {
     const [buzon, setBuzon] = useState([]);
     const [selected, setSelected] = useState("Todos")
-    
+
     // Función para convertir fecha y hora en un objeto Date
     function parseDateTime(fecha, hora) {
         return new Date(`${fecha}T${hora}`);
@@ -20,7 +20,9 @@ const Notification = () => {
         return eventos.sort((a, b) => {
             const dateA = parseDateTime(a.date, a.hour);
             const dateB = parseDateTime(b.date, b.hour);
-            return dateB - dateA; // Orden descendente
+            console.log(dateA);
+            console.log(dateB);
+            return dateA - dateB; // Orden descendente
         });
     }
     useEffect(() => {
