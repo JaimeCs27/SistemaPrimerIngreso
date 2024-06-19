@@ -9,17 +9,20 @@ import axios from 'axios'
 const Notification = () => {
     const [buzon, setBuzon] = useState([]);
     const [selected, setSelected] = useState("Todos")
-
-    function ordenarPorFecha(buzon) {
-        return buzon.sort((b, a) => {
-            const horaA = a.hour;
-            const horaB = b.hour;
-            if (horaA < horaB) return -1;
-            if (horaA > horaB) return 1;
-            return 0;
-        });
+    
+    // Función para convertir fecha y hora en un objeto Date
+    function parseDateTime(fecha, hora) {
+        return new Date(`${fecha}T${hora}`);
     }
 
+    // Función para ordenar la lista de eventos de forma descendente por fecha y hora
+    function ordenarPorFecha(eventos) {
+        return eventos.sort((a, b) => {
+            const dateA = parseDateTime(a.date, a.hour);
+            const dateB = parseDateTime(b.date, b.hour);
+            return dateB - dateA; // Orden descendente
+        });
+    }
     useEffect(() => {
         const us = JSON.parse(localStorage.getItem('user'))
         axios.get(`${import.meta.env.VITE_API}/users/buzon/${us._id}`).then((response)=>{
